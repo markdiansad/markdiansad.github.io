@@ -78,6 +78,63 @@
     </entry>
     
     
+    
+    <entry>
+      <title>深拷贝和浅拷贝</title>
+      <link href="/2022/03/21/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/"/>
+      <url>/2022/03/21/%E6%B7%B1%E6%8B%B7%E8%B4%9D%E5%92%8C%E6%B5%85%E6%8B%B7%E8%B4%9D/</url>
+      
+        <content type="html"><![CDATA[<h2 id="深拷贝和浅拷贝"><a href="#深拷贝和浅拷贝" class="headerlink" title="深拷贝和浅拷贝"></a>深拷贝和浅拷贝</h2><p><strong>浅拷贝和深拷贝都只针对于引用数据类型</strong></p><ul><li>浅拷贝<ul><li>只复制指向对象的指针,而不复制对象本身，新旧对象还是共享同一块内存;</li></ul></li><li>深拷贝<ul><li>另外创造一个一模一样的对象,新对象跟原对象不共享内存,修改新对象不会影响到原对象</li></ul></li></ul><h3 id="浅拷贝实现方法"><a href="#浅拷贝实现方法" class="headerlink" title="浅拷贝实现方法"></a>浅拷贝实现方法</h3><pre class="language-none"><code class="language-none">1.Object.assign方法var obj &#x3D; &#123;    a:1,    b:2&#125;var obj1 &#x3D; Object.assign(&#123;&#125;,obj)obj1.a &#x3D; 3:console.log(obj.a) &#x2F;&#x2F; 32.解构赋值var obj1 &#x3D; &#123;a: 1, b: 2&#125;var obj2 &#x3D; &#123;...obj1&#125;obj2.a &#x3D; 4console.log(obj1, obj2)</code></pre><h3 id="深拷贝实现方法"><a href="#深拷贝实现方法" class="headerlink" title="深拷贝实现方法"></a>深拷贝实现方法</h3><pre class="language-none"><code class="language-none">1.json.stringify()方法var obj1 &#x3D; [&#123;    name: &#39;臧三&#39;,    childs: [&#39;小明&#39;, &#39;小芳&#39;]&#125;]var obj2 &#x3D; JSON.parse(JSON.stringify(obj1))obj2[0].childs &#x3D; []console.log(obj1, obj2)2.递归方法var obj1 &#x3D; [&#123;    name: &#39;臧三&#39;,    childs: [&#39;小明&#39;, &#39;小芳&#39;],    fn: function() &#123;&#125;,    age: undefined&#125;]var obj2 &#x3D; extend(obj1)obj2[0].childs &#x3D; []console.log(obj1, obj2)function extend(data) &#123;    if (typeof data &#x3D;&#x3D;&#x3D; &#39;object&#39; &amp;&amp; data) &#123;        let val &#x3D; typeof data.length &#x3D;&#x3D;&#x3D; &#39;number&#39; ? [] : &#123;&#125;        for(let i in data) &#123;            val[i] &#x3D; extend(data[i])        &#125;        return val    &#125; else &#123;        return data    &#125;&#125;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>闭包的理解</title>
+      <link href="/2022/03/14/%E9%97%AD%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+      <url>/2022/03/14/%E9%97%AD%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3/</url>
+      
+        <content type="html"><![CDATA[<p>–</p><h2 id="闭包的理解"><a href="#闭包的理解" class="headerlink" title="闭包的理解"></a>闭包的理解</h2><p>一个函数和对其他周围状态的引用捆绑在一起（或者说函数被引用包围），这样的组合就是<strong>闭包</strong>。<br>闭包可以在一个内层函数中访问到外层函数的作用域。</p><h3 id="闭包的特点"><a href="#闭包的特点" class="headerlink" title="闭包的特点"></a>闭包的特点</h3><ul><li>可以让外部访问函数内部的变量。</li><li>可以避免使用全局变量。防止全局变量污染。</li><li>可以让局部变量常驻在内存中</li><li>会造成内存泄露(有一个内存空间长期被占用，而不被释放)</li></ul><h3 id="闭包示例"><a href="#闭包示例" class="headerlink" title="闭包示例"></a>闭包示例</h3><pre class="language-none"><code class="language-none"> function fn1()&#123;            var max &#x3D; 10;            return function (x) &#123;                if(x &gt; max)&#123;                    console.log(x);                &#125;            &#125;        &#125;var fn2 &#x3D; fn1();fn2(20);</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>防抖与节流</title>
+      <link href="/2022/02/27/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
+      <url>/2022/02/27/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</url>
+      
+        <content type="html"><![CDATA[<h2 id="防抖与节流"><a href="#防抖与节流" class="headerlink" title="防抖与节流"></a>防抖与节流</h2><h3 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h3><p><strong>在事件被触发的n秒后再执行回调,如果这n秒又被触发，则重新计时.高频操作下，只执行最后一次.</strong></p><pre class="language-none"><code class="language-none">&lt;script&gt;    &#x2F;&#x2F; 防抖  用户触发事件过于频繁    let inp &#x3D; document.getElementsByTagName(&#39;input&#39;)    inp[0].oninput &#x3D; deco(function () &#123;        console.log(this.value)    &#125;, 500)    function deco(fn, time) &#123;        let t &#x3D; null;        return function () &#123;            if (t) &#123;                clearTimeout(t)            &#125;            t &#x3D; setTimeout(() &#x3D;&gt; &#123;                fn.call(this)            &#125;, time)        &#125;    &#125;&lt;&#x2F;script&gt;</code></pre><h3 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h3><p><strong>一定时间内 控制触发的次数</strong></p><pre class="language-none"><code class="language-none">&lt;script&gt;  window.onscroll &#x3D; fn(function () &#123;        console.log(1111111)    &#125;, 500)    function fn(fn1, time) &#123;        let flag &#x3D; true;        return function () &#123;            if (flag) &#123;                setTimeout(() &#x3D;&gt; &#123;                    fn1.call(this)                    flag &#x3D; true                &#125;, time)            &#125;            flag &#x3D; false;        &#125;    &#125;&lt;&#x2F;script&gt;</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
   
   
 </search>
