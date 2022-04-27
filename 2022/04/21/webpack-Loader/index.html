@@ -5,10 +5,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="webpack5_Loader, 阿龙">
-    <meta name="description" content="–
-webpack Loader整理1. Loader机制的作用是什么？
+    <meta name="description" content="webpack Loader整理1. Loader机制的作用是什么？
 webpack 本身只能处理 JavaScript 和 JSON 文件，而 loader 为 webpack 添加了处理其他类型文件的能力。
-webpack默认只能打">
+webpack默认只能打包j">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -470,17 +469,28 @@ webpack默认只能打">
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>–</p>
-<h1 id="webpack-Loader整理"><a href="#webpack-Loader整理" class="headerlink" title="webpack Loader整理"></a>webpack Loader整理</h1><h2 id="1-Loader机制的作用是什么？"><a href="#1-Loader机制的作用是什么？" class="headerlink" title="1. Loader机制的作用是什么？"></a>1. Loader机制的作用是什么？</h2><ul>
+                <h1 id="webpack-Loader整理"><a href="#webpack-Loader整理" class="headerlink" title="webpack Loader整理"></a>webpack Loader整理</h1><h2 id="1-Loader机制的作用是什么？"><a href="#1-Loader机制的作用是什么？" class="headerlink" title="1. Loader机制的作用是什么？"></a>1. Loader机制的作用是什么？</h2><ul>
 <li>webpack 本身只能处理 JavaScript 和 JSON 文件，而 loader 为 webpack 添加了处理其他类型文件的能力。</li>
-<li>webpack默认只能打包js文件，配置里的module.rules数组配置了一组规则，告诉 Webpack 在遇到哪些文件时使用哪些 Loader 去加载和转换打包成js。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">注意：use属性的值需要是一个由 Loader 名称组成的数组，Loader 的执行顺序是由后到前的；每一个 Loader 都可以通过 URL querystring 的方式传入参数，例如css-loader?minimize中的minimize告诉css-loader要开启 CSS 压缩。</span><br></pre></td></tr></table></figure></li>
+<li>webpack默认只能打包js文件，配置里的module.rules数组配置了一组规则，告诉 Webpack 在遇到哪些文件时使用哪些 Loader 去加载和转换打包成js。<pre class="language-none"><code class="language-none">注意：use属性的值需要是一个由 Loader 名称组成的数组，Loader 的执行顺序是由后到前的；
+每一个 Loader 都可以通过 URL querystring 的方式传入参数，例如css-loader?minimize
+中的minimize告诉css-loader要开启 CSS 压缩。</code></pre></li>
 </ul>
-<h2 id="2-有哪些常见的Loader？他们是解决什么问题的？"><a href="#2-有哪些常见的Loader？他们是解决什么问题的？" class="headerlink" title="2. 有哪些常见的Loader？他们是解决什么问题的？"></a>2. 有哪些常见的Loader？他们是解决什么问题的？</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">● file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件</span><br><span class="line"></span><br><span class="line">● url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去</span><br><span class="line"></span><br><span class="line">● source-map-loader：加载额外的 Source Map 文件，以方便断点调试</span><br><span class="line"></span><br><span class="line">● image-loader：加载并且压缩图片文件</span><br><span class="line"></span><br><span class="line">● babel-loader：把 ES6 转换成 ES5</span><br><span class="line"></span><br><span class="line">● css-loader：加载 CSS，支持模块化、压缩、文件导入等特性</span><br><span class="line"></span><br><span class="line">● style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。</span><br><span class="line"></span><br><span class="line">● eslint-loader：通过 ESLint 检查 JavaScript 代码</span><br></pre></td></tr></table></figure>
+<h2 id="2-有哪些常见的Loader？他们是解决什么问题的？"><a href="#2-有哪些常见的Loader？他们是解决什么问题的？" class="headerlink" title="2. 有哪些常见的Loader？他们是解决什么问题的？"></a>2. 有哪些常见的Loader？他们是解决什么问题的？</h2><pre class="language-none"><code class="language-none">file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件
+url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去
+source-map-loader：加载额外的 Source Map 文件，以方便断点调试
+image-loader：加载并且压缩图片文件
+babel-loader：把 ES6 转换成 ES5
+css-loader：加载 CSS，支持模块化、压缩、文件导入等特性
+style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。
+eslint-loader：通过 ESLint 检查 JavaScript 代码</code></pre>
 
 
 
@@ -521,7 +531,7 @@ webpack默认只能打">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/04/21/webpack5-Loader/">http://example.com/2022/04/21/webpack5-Loader/</a>
+                    <a href="http://example.com/2022/04/21/webpack-Loader/">http://example.com/2022/04/21/webpack-Loader/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -730,17 +740,16 @@ webpack默认只能打">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/04/21/webpack5-Loader/">
+                <a href="/2022/04/22/webpack-%E4%BC%98%E5%8C%96/">
                     <div class="card-image">
                         
-                        <img src="https://img0.baidu.com/it/u=4024252267,452044846&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=468" class="responsive-img" alt="webpack5_Loader">
+                        <img src="https://img0.baidu.com/it/u=1291754483,1909057437&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=334" class="responsive-img" alt="webpack_优化">
                         
-                        <span class="card-title">webpack5_Loader</span>
+                        <span class="card-title">webpack_优化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -750,9 +759,9 @@ webpack默认只能打">
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-21
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-22
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -765,7 +774,6 @@ webpack默认只能打">
                         </span>
                     </div>
                 </div>
-
                 
             </div>
         </div>
@@ -776,7 +784,7 @@ webpack默认只能打">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/04/21/webpack5-Plugin/">
+                <a href="/2022/04/21/webpack-Plugin/">
                     <div class="card-image">
                         
                         <img src="https://img2.baidu.com/it/u=369083881,179047262&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" class="responsive-img" alt="webpack5_Plugin">

@@ -7,7 +7,7 @@
     <meta name="keywords" content="webpack整理, 阿龙">
     <meta name="description" content="–
 webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，将不同的资源和文件，进行打包，合并在一个文件里。
-12341、依赖管理：方便引用第三方模块，让模块更容易复用、避免全局注入导致的冲突、、避免重复加载或者加载不必">
+1、依赖管理：方便引用第三方模块，让模块更容易复用、避免全局注入导致的冲突、、避免重复加载或者加载不必要的模块">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -469,6 +469,9 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
         <hr class="clearfix">
 
         
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
 
         
 
@@ -476,10 +479,36 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
             <div id="articleContent">
                 <p>–</p>
 <h1 id="webpack5概念"><a href="#webpack5概念" class="headerlink" title="webpack5概念"></a>webpack5概念</h1><h2 id="1-谈谈你对Webpack的理解？"><a href="#1-谈谈你对Webpack的理解？" class="headerlink" title="1.谈谈你对Webpack的理解？"></a>1.谈谈你对Webpack的理解？</h2><p>是一个模块化打包工具，将不同的资源和文件，进行打包，合并在一个文件里。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1、依赖管理：方便引用第三方模块，让模块更容易复用、避免全局注入导致的冲突、、避免重复加载或者加载不必要的模块</span><br><span class="line">2、合并代码：把各个分散的模块集中打包成大文件，减少HTTP的链接的请求次数，配合uglify.js可以减少、优化代码的体积</span><br><span class="line">3、各种插件：babel把ES6+转[webpack5整理]()化为ES5-，eslint可以检查编译时的各种错误</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre class="language-none"><code class="language-none">1、依赖管理：方便引用第三方模块，让模块更容易复用、避免全局注入导致的冲突、、避免重复加载或者加载不必要的模块
+2、合并代码：把各个分散的模块集中打包成大文件，减少HTTP的链接的请求次数，配合uglify.js可以减少、优化代码的体积
+3、各种插件：babel把ES6+转[webpack5整理]()化为ES5-，eslint可以检查编译时的各种错误
+</code></pre>
 
-<h2 id="2-webpack的工作原理"><a href="#2-webpack的工作原理" class="headerlink" title="2.webpack的工作原理?"></a>2.webpack的工作原理?</h2><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">1. Entry:入口指示webpack以哪个文件为入口起点开始打包，分析构建内部依赖图</span><br><span class="line"></span><br><span class="line">2. output:输出指示webpack的打包后的资源bundles输出到哪里去，以及如何命名</span><br><span class="line"></span><br><span class="line">3. Loader:让webpack能够去处理哪些非JavaScrip文件（webpack自身只理解javaScript)</span><br><span class="line"></span><br><span class="line">4. plugin:插件可以用于执行范围更广的任务。插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量等</span><br><span class="line"></span><br><span class="line">5. mode:模式指示webpack使用相应模式的配置</span><br></pre></td></tr></table></figure>
-<h4 id="流程概括"><a href="#流程概括" class="headerlink" title="流程概括"></a>流程概括</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">webpack的运行流程是一个串行的过程，从启动到结束会依次执行以下流程：</span><br><span class="line"></span><br><span class="line">1. 初始化参数：从配置文件和Shell语句中读取与合并参数，得出最终的参数；</span><br><span class="line"></span><br><span class="line">2. 开始编译： 用上一步得到的参数初始化Complier对象，加载所有配置的插件，执行对象的run方法开始执行编译；</span><br><span class="line"></span><br><span class="line">3. 确定入口： 根据配置中的entry找出所有入口文件；</span><br><span class="line"></span><br><span class="line">4. 编译模块：从入口文件出发，调用所有配置的Loader对模块进行翻译，再找出该模块依赖的模块，再递归本步骤知道所有入口依赖的文件都经过了本步骤的处理；</span><br><span class="line"></span><br><span class="line">5. 完成模块编译： 在经过第4步使用Loader翻译完所有模块后，得到了每个模块被翻译后的最终内容以及他们之间的依赖关系；</span><br><span class="line"></span><br><span class="line">6. 输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的Chunk，再把每个Chunk转换成一个单独的文件加入到输出列表，这步是可以修改输出内容的最后机会；</span><br><span class="line"></span><br><span class="line">7. 输出完成： 在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。</span><br><span class="line">在以上过程中，webpack会在特定的时间点广播出特定的时间，插件在监听到感兴趣的时间后会执行特定的逻辑，并且插件可以调用Webpack提供的API改变Webpack的运行结果。</span><br></pre></td></tr></table></figure>
+<h2 id="2-webpack的工作原理"><a href="#2-webpack的工作原理" class="headerlink" title="2.webpack的工作原理?"></a>2.webpack的工作原理?</h2><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><pre class="language-none"><code class="language-none">1. Entry:入口指示webpack以哪个文件为入口起点开始打包，分析构建内部依赖图
+
+2. output:输出指示webpack的打包后的资源bundles输出到哪里去，以及如何命名
+
+3. Loader:让webpack能够去处理哪些非JavaScrip文件（webpack自身只理解javaScript)
+
+4. plugin:插件可以用于执行范围更广的任务。插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量等
+
+5. mode:模式指示webpack使用相应模式的配置</code></pre>
+<h4 id="流程概括"><a href="#流程概括" class="headerlink" title="流程概括"></a>流程概括</h4><pre class="language-none"><code class="language-none">webpack的运行流程是一个串行的过程，从启动到结束会依次执行以下流程：
+
+1. 初始化参数：从配置文件和Shell语句中读取与合并参数，得出最终的参数；
+
+2. 开始编译： 用上一步得到的参数初始化Complier对象，加载所有配置的插件，执行对象的run方法开始执行编译；
+
+3. 确定入口： 根据配置中的entry找出所有入口文件；
+
+4. 编译模块：从入口文件出发，调用所有配置的Loader对模块进行翻译，再找出该模块依赖的模块，再递归本步骤知道所有入口依赖的文件都经过了本步骤的处理；
+
+5. 完成模块编译： 在经过第4步使用Loader翻译完所有模块后，得到了每个模块被翻译后的最终内容以及他们之间的依赖关系；
+
+6. 输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的Chunk，再把每个Chunk转换成一个单独的文件加入到输出列表，这步是可以修改输出内容的最后机会；
+
+7. 输出完成： 在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。
+在以上过程中，webpack会在特定的时间点广播出特定的时间，插件在监听到感兴趣的时间后会执行特定的逻辑，并且插件可以调用Webpack提供的API改变Webpack的运行结果。</code></pre>
 <h4 id="流程细节"><a href="#流程细节" class="headerlink" title="流程细节"></a>流程细节</h4><ul>
 <li>Webpack的构建流程可以分为以下三个阶段：<ul>
 <li><ol>
@@ -497,7 +526,41 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
 </ul>
 </li>
 </ul>
-<h2 id="3-webpack4和webpack5的区别？"><a href="#3-webpack4和webpack5的区别？" class="headerlink" title="3.webpack4和webpack5的区别？"></a>3.webpack4和webpack5的区别？</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">更快的构建速度</span><br><span class="line"></span><br><span class="line">更高的版本要求</span><br><span class="line"></span><br><span class="line">更灵活的模块组合</span><br><span class="line"></span><br><span class="line">更智能的缓存优化</span><br><span class="line"></span><br><span class="line">更小的体积</span><br><span class="line"></span><br><span class="line">webpack4 上需要下载安装 terser-webpack-plugin 插件</span><br><span class="line"></span><br><span class="line">webpack5 内部本身就自带 js 压缩功能，他内置了 terser-webpack-plugin 插件，我们不用再下载安装。而且在 mode=“production” 的时候会自动开启 js 压缩功能。</span><br><span class="line"></span><br><span class="line">webpack4 缓存配置</span><br><span class="line">    ==&gt; npm install hard-source-webpack-plugin -D</span><br><span class="line">    </span><br><span class="line">webpack5 缓存配置</span><br><span class="line">    ==&gt; webpack5 内部内置了 cache 缓存机制。直接配置即可。</span><br><span class="line">    ==&gt; cache 会在开发模式下被设置成 type： memory 而且会在生产模式把cache 给禁用掉。</span><br><span class="line"></span><br><span class="line">webpack4 启动服务</span><br><span class="line">    ==&gt; 通过 webpack-dev-server 启动服务</span><br><span class="line"> </span><br><span class="line">webpack5 启动服务</span><br><span class="line">    ==&gt; 内置使用 webpack serve 启动，但是他的日志不是很好，所以一般都加都喜欢用 webpack-dev-server 优化。</span><br><span class="line"></span><br><span class="line">打包的区别</span><br><span class="line">● webpack4打包:即使后续没有使用到num1的函数，依然会将代码打包进去</span><br><span class="line"></span><br><span class="line">● webpack5打包:后续没有使用到num1的函数，不会将代码打包进去</span><br><span class="line"></span><br><span class="line">输出代码的区别</span><br><span class="line">● webpack4只能输出es5的代码</span><br><span class="line">● webpack5新增属性output.ecmaVersion，可以生成ES5和ES6的代码</span><br></pre></td></tr></table></figure>
+<h2 id="3-webpack4和webpack5的区别？"><a href="#3-webpack4和webpack5的区别？" class="headerlink" title="3.webpack4和webpack5的区别？"></a>3.webpack4和webpack5的区别？</h2><pre class="language-none"><code class="language-none">更快的构建速度
+
+更高的版本要求
+
+更灵活的模块组合
+
+更智能的缓存优化
+
+更小的体积
+
+webpack4 上需要下载安装 terser-webpack-plugin 插件
+
+webpack5 内部本身就自带 js 压缩功能，他内置了 terser-webpack-plugin 插件，我们不用再下载安装。而且在 mode&#x3D;“production” 的时候会自动开启 js 压缩功能。
+
+webpack4 缓存配置
+    &#x3D;&#x3D;&gt; npm install hard-source-webpack-plugin -D
+    
+webpack5 缓存配置
+    &#x3D;&#x3D;&gt; webpack5 内部内置了 cache 缓存机制。直接配置即可。
+    &#x3D;&#x3D;&gt; cache 会在开发模式下被设置成 type： memory 而且会在生产模式把cache 给禁用掉。
+
+webpack4 启动服务
+    &#x3D;&#x3D;&gt; 通过 webpack-dev-server 启动服务
+ 
+webpack5 启动服务
+    &#x3D;&#x3D;&gt; 内置使用 webpack serve 启动，但是他的日志不是很好，所以一般都加都喜欢用 webpack-dev-server 优化。
+
+打包的区别
+● webpack4打包:即使后续没有使用到num1的函数，依然会将代码打包进去
+
+● webpack5打包:后续没有使用到num1的函数，不会将代码打包进去
+
+输出代码的区别
+● webpack4只能输出es5的代码
+● webpack5新增属性output.ecmaVersion，可以生成ES5和ES6的代码</code></pre>
 
 <h2 id="4-前端代码为何要进行构建和打包？"><a href="#4-前端代码为何要进行构建和打包？" class="headerlink" title="4. 前端代码为何要进行构建和打包？"></a>4. 前端代码为何要进行构建和打包？</h2><ul>
 <li><p>代码方面体积更小，加载更快（tree-shaking，压缩合并）</p>
@@ -530,7 +593,11 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
 </ul>
 </li>
 </ol>
-<h2 id="6-什么是bundle，什么是chunk，什么是module"><a href="#6-什么是bundle，什么是chunk，什么是module" class="headerlink" title="6. 什么是bundle，什么是chunk，什么是module"></a>6. 什么是bundle，什么是chunk，什么是module</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bundle： 是由webpack打包出来的文件</span><br><span class="line"></span><br><span class="line">chunk： 是指webpack在进行模块依赖分析的时候，代码分割出来的代码块</span><br><span class="line"></span><br><span class="line">module： 是开发中的单个模块</span><br></pre></td></tr></table></figure>
+<h2 id="6-什么是bundle，什么是chunk，什么是module"><a href="#6-什么是bundle，什么是chunk，什么是module" class="headerlink" title="6. 什么是bundle，什么是chunk，什么是module"></a>6. 什么是bundle，什么是chunk，什么是module</h2><pre class="language-none"><code class="language-none">bundle： 是由webpack打包出来的文件
+
+chunk： 是指webpack在进行模块依赖分析的时候，代码分割出来的代码块
+
+module： 是开发中的单个模块</code></pre>
 
 
 
@@ -577,7 +644,7 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/04/20/webpack5%E6%A6%82%E5%BF%B5/">http://example.com/2022/04/20/webpack5%E6%A6%82%E5%BF%B5/</a>
+                    <a href="http://example.com/2022/04/20/webpack%E6%A6%82%E5%BF%B5/">http://example.com/2022/04/20/webpack%E6%A6%82%E5%BF%B5/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -790,7 +857,7 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/04/21/webpack5-Plugin/">
+                <a href="/2022/04/21/webpack-Plugin/">
                     <div class="card-image">
                         
                         <img src="https://img2.baidu.com/it/u=369083881,179047262&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" class="responsive-img" alt="webpack5_Plugin">
@@ -830,7 +897,7 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
                 本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2022/04/20/webpack5%E6%A6%82%E5%BF%B5/">
+                <a href="/2022/04/20/webpack%E6%A6%82%E5%BF%B5/">
                     <div class="card-image">
                         
                         <img src="https://img2.baidu.com/it/u=1350077918,3973993083&fm=253&fmt=auto&app=138&f=JPEG?w=891&h=500" class="responsive-img" alt="webpack整理">
