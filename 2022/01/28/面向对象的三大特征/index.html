@@ -4,11 +4,17 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="防抖与节流, 阿龙">
-    <meta name="description" content="防抖与节流防抖在事件被触发的n秒后再执行回调,如果这n秒又被触发，则重新计时.高频操作下，只执行最后一次.
-&amp;lt;script&amp;gt;
-    &amp;#x2F;&amp;#x2F; 防抖  用户触发事件过于频繁
-    let inp &amp;#x3D; ">
+    <meta name="keywords" content="面向对象的三大特征, 阿龙">
+    <meta name="description" content="面向对象的三大特征面向对象是一种程序设计思想，将数据和处理数据的程序封装到对象中。
+
+封装:
+
+将对象运行所需的资源封装在程序对象中，可以隐藏实现的细节，使得代码模块化.
+
+
+继承:
+
+继承可以解决代码复用。当多个类存在相同的属性和方法时,">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +28,7 @@
 
     
 
-    <title>防抖与节流 | 阿龙</title>
+    <title>面向对象的三大特征 | 阿龙</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +318,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://img2.baidu.com/it/u=1604597301,3568613850&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=277')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://img2.baidu.com/it/u=384964784,257597516&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">防抖与节流</h1>
+                    <h1 class="description center-align post-title">面向对象的三大特征</h1>
                 </div>
             </div>
         </div>
@@ -454,7 +460,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-27
+                    2022-01-28
                 </div>
                 
 
@@ -478,48 +484,29 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="防抖与节流"><a href="#防抖与节流" class="headerlink" title="防抖与节流"></a>防抖与节流</h2><h3 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h3><p><strong>在事件被触发的n秒后再执行回调,如果这n秒又被触发，则重新计时.高频操作下，只执行最后一次.</strong></p>
-<pre class="language-none"><code class="language-none">&lt;script&gt;
-    &#x2F;&#x2F; 防抖  用户触发事件过于频繁
-    let inp &#x3D; document.getElementsByTagName(&#39;input&#39;)
-    inp[0].oninput &#x3D; deco(function () &#123;
-        console.log(this.value)
-    &#125;, 500)
-
-    function deco(fn, time) &#123;
-        let t &#x3D; null;
-        return function () &#123;
-            if (t) &#123;
-                clearTimeout(t)
-            &#125;
-            t &#x3D; setTimeout(() &#x3D;&gt; &#123;
-                fn.call(this)
-            &#125;, time)
-        &#125;
-    &#125;
-&lt;&#x2F;script&gt;</code></pre>
-
-<h3 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h3><p><strong>一定时间内 控制触发的次数</strong></p>
-<pre class="language-none"><code class="language-none">&lt;script&gt;
-  window.onscroll &#x3D; fn(function () &#123;
-        console.log(1111111)
-    &#125;, 500)
-
-    function fn(fn1, time) &#123;
-        let flag &#x3D; true;
-        return function () &#123;
-            if (flag) &#123;
-                setTimeout(() &#x3D;&gt; &#123;
-                    fn1.call(this)
-                    flag &#x3D; true
-                &#125;, time)
-            &#125;
-            flag &#x3D; false;
-        &#125;
-    &#125;
-&lt;&#x2F;script&gt;
-</code></pre>
-
+                <h2 id="面向对象的三大特征"><a href="#面向对象的三大特征" class="headerlink" title="面向对象的三大特征"></a>面向对象的三大特征</h2><p><strong>面向对象是一种程序设计思想，将数据和处理数据的程序封装到对象中。</strong></p>
+<ul>
+<li><p>封装:</p>
+<ul>
+<li>将对象运行所需的资源封装在程序对象中，可以隐藏实现的细节，使得代码模块化.</li>
+</ul>
+</li>
+<li><p>继承:</p>
+<ul>
+<li>继承可以解决代码复用。当多个类存在相同的属性和方法时,可以将这些类中抽象出父类,在父类中定义这些相同的属性和方法，所有子类不需要重新定义这些方法和属性，只需要通过继承父类中的方法.</li>
+</ul>
+</li>
+<li><p>多态:</p>
+<ul>
+<li>多态是指一个引用(类型)在不同情况下的多种状态.多态是通过指向父类的引用，来调用在不同子类中实现的方法。多态分为两种:一种是行为多态和对象的多态.</li>
+</ul>
+</li>
+<li><p>优点:</p>
+<ul>
+<li>提高代码的复用性及可维护性。</li>
+</ul>
+</li>
+</ul>
 
                 
             </div>
@@ -546,7 +533,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/02/27/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">http://example.com/2022/02/27/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</a>
+                    <a href="http://example.com/2022/01/28/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81/">http://example.com/2022/01/28/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -759,12 +746,12 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/03/14/%E9%97%AD%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3/">
+                <a href="/2022/02/27/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">
                     <div class="card-image">
                         
-                        <img src="https://img2.baidu.com/it/u=348212466,3548643328&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" class="responsive-img" alt="闭包的理解">
+                        <img src="https://img2.baidu.com/it/u=1604597301,3568613850&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=277" class="responsive-img" alt="防抖与节流">
                         
-                        <span class="card-title">闭包的理解</span>
+                        <span class="card-title">防抖与节流</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -775,7 +762,7 @@
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-14
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-27
                         </span>
                         <span class="publish-author">
                             
@@ -796,7 +783,7 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
                 <a href="/2022/01/28/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81/">
@@ -829,6 +816,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>

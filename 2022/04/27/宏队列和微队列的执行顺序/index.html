@@ -4,11 +4,19 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="防抖与节流, 阿龙">
-    <meta name="description" content="防抖与节流防抖在事件被触发的n秒后再执行回调,如果这n秒又被触发，则重新计时.高频操作下，只执行最后一次.
-&amp;lt;script&amp;gt;
-    &amp;#x2F;&amp;#x2F; 防抖  用户触发事件过于频繁
-    let inp &amp;#x3D; ">
+    <meta name="keywords" content="宏队列和微队列的执行顺序, 阿龙">
+    <meta name="description" content="–
+宏队列和微队列的执行
+宏队列:
+用于保存待执行的宏任务（回调）,比如：定时器回调，DOM事件回调,ajax回调
+
+
+微队列:
+用来保存待执行的微任务（回调）,比如：promise的回调，MutationObserver的回调
+
+
+
+js">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -22,7 +30,7 @@
 
     
 
-    <title>防抖与节流 | 阿龙</title>
+    <title>宏队列和微队列的执行顺序 | 阿龙</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -312,12 +320,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://img2.baidu.com/it/u=1604597301,3568613850&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=277')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://img2.baidu.com/it/u=4167581070,3859984764&fm=253&fmt=auto&app=138&f=JPEG?w=752&h=500')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">防抖与节流</h1>
+                    <h1 class="description center-align post-title">宏队列和微队列的执行顺序</h1>
                 </div>
             </div>
         </div>
@@ -454,7 +462,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-02-27
+                    2022-04-27
                 </div>
                 
 
@@ -478,48 +486,23 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="防抖与节流"><a href="#防抖与节流" class="headerlink" title="防抖与节流"></a>防抖与节流</h2><h3 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h3><p><strong>在事件被触发的n秒后再执行回调,如果这n秒又被触发，则重新计时.高频操作下，只执行最后一次.</strong></p>
-<pre class="language-none"><code class="language-none">&lt;script&gt;
-    &#x2F;&#x2F; 防抖  用户触发事件过于频繁
-    let inp &#x3D; document.getElementsByTagName(&#39;input&#39;)
-    inp[0].oninput &#x3D; deco(function () &#123;
-        console.log(this.value)
-    &#125;, 500)
-
-    function deco(fn, time) &#123;
-        let t &#x3D; null;
-        return function () &#123;
-            if (t) &#123;
-                clearTimeout(t)
-            &#125;
-            t &#x3D; setTimeout(() &#x3D;&gt; &#123;
-                fn.call(this)
-            &#125;, time)
-        &#125;
-    &#125;
-&lt;&#x2F;script&gt;</code></pre>
-
-<h3 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h3><p><strong>一定时间内 控制触发的次数</strong></p>
-<pre class="language-none"><code class="language-none">&lt;script&gt;
-  window.onscroll &#x3D; fn(function () &#123;
-        console.log(1111111)
-    &#125;, 500)
-
-    function fn(fn1, time) &#123;
-        let flag &#x3D; true;
-        return function () &#123;
-            if (flag) &#123;
-                setTimeout(() &#x3D;&gt; &#123;
-                    fn1.call(this)
-                    flag &#x3D; true
-                &#125;, time)
-            &#125;
-            flag &#x3D; false;
-        &#125;
-    &#125;
-&lt;&#x2F;script&gt;
-</code></pre>
-
+                <p>–</p>
+<h2 id="宏队列和微队列的执行"><a href="#宏队列和微队列的执行" class="headerlink" title="宏队列和微队列的执行"></a>宏队列和微队列的执行</h2><ul>
+<li><strong>宏队列</strong>:<ul>
+<li>用于保存待执行的宏任务（回调）,比如：定时器回调，DOM事件回调,ajax回调</li>
+</ul>
+</li>
+<li><strong>微队列</strong>:<ul>
+<li>用来保存待执行的微任务（回调）,比如：promise的回调，MutationObserver的回调</li>
+</ul>
+</li>
+</ul>
+<p>js执行时会区别这2个队列</p>
+<ol>
+<li>js引擎首先必须先执行所有的初始化同步任务代码</li>
+<li>每次准备取出第一个宏任务执行前，都要将所有的微任务一个一个取出来执行，也就是微任务比宏任务先执行</li>
+</ol>
+<p><img src="/2022/04/27/%E5%AE%8F%E9%98%9F%E5%88%97%E5%92%8C%E5%BE%AE%E9%98%9F%E5%88%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/1.png"></p>
 
                 
             </div>
@@ -546,7 +529,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2022/02/27/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/">http://example.com/2022/02/27/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</a>
+                    <a href="http://example.com/2022/04/27/%E5%AE%8F%E9%98%9F%E5%88%97%E5%92%8C%E5%BE%AE%E9%98%9F%E5%88%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/">http://example.com/2022/04/27/%E5%AE%8F%E9%98%9F%E5%88%97%E5%92%8C%E5%BE%AE%E9%98%9F%E5%88%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -755,16 +738,17 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2022/03/14/%E9%97%AD%E5%8C%85%E7%9A%84%E7%90%86%E8%A7%A3/">
+                <a href="/2022/04/27/%E5%AE%8F%E9%98%9F%E5%88%97%E5%92%8C%E5%BE%AE%E9%98%9F%E5%88%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/">
                     <div class="card-image">
                         
-                        <img src="https://img2.baidu.com/it/u=348212466,3548643328&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" class="responsive-img" alt="闭包的理解">
+                        <img src="https://img2.baidu.com/it/u=4167581070,3859984764&fm=253&fmt=auto&app=138&f=JPEG?w=752&h=500" class="responsive-img" alt="宏队列和微队列的执行顺序">
                         
-                        <span class="card-title">闭包的理解</span>
+                        <span class="card-title">宏队列和微队列的执行顺序</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -774,9 +758,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -789,6 +773,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -799,12 +784,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/28/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E5%BE%81/">
+                <a href="/2022/04/22/webpack-%E4%BC%98%E5%8C%96/">
                     <div class="card-image">
                         
-                        <img src="https://img2.baidu.com/it/u=384964784,257597516&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" class="responsive-img" alt="面向对象的三大特征">
+                        <img src="https://img0.baidu.com/it/u=1291754483,1909057437&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=334" class="responsive-img" alt="webpack_优化">
                         
-                        <span class="card-title">面向对象的三大特征</span>
+                        <span class="card-title">webpack_优化</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -815,14 +800,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-22
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/javascript/" class="post-category">
-                                    javascript
+                            <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" class="post-category">
+                                    前端工程化
                                 </a>
                             
                             
