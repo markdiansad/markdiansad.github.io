@@ -6,17 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="宏队列和微队列的执行顺序, 阿龙">
     <meta name="description" content="–
-宏队列和微队列的执行
-宏队列:
-用于保存待执行的宏任务（回调）,比如：定时器回调，DOM事件回调,ajax回调
-
-
-微队列:
-用来保存待执行的微任务（回调）,比如：promise的回调，MutationObserver的回调
-
-
-
-js">
+事件循环 宏任务和微任务事件循环
+js引擎首先必须先执行所有的初始化同步任务代码,遇到异步任务，提交给’异步进程处理’,主线程执行栈会不停监听消息队列是否有异步任务，称位事件循环
+同步和异步任务分别进入不同的执行”场所”，同步的进入主线">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -487,7 +479,15 @@ js">
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>–</p>
-<h2 id="宏队列和微队列的执行"><a href="#宏队列和微队列的执行" class="headerlink" title="宏队列和微队列的执行"></a>宏队列和微队列的执行</h2><ul>
+<h2 id="事件循环-宏任务和微任务"><a href="#事件循环-宏任务和微任务" class="headerlink" title="事件循环 宏任务和微任务"></a>事件循环 宏任务和微任务</h2><h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><ol>
+<li>js引擎首先必须先执行所有的初始化同步任务代码,遇到异步任务，提交给’异步进程处理’,主线程执行栈会不停监听消息队列是否有异步任务，称位事件循环</li>
+<li>同步和异步任务分别进入不同的执行”场所”，同步的进入主线程，异步的进入Event Table并注册函数。</li>
+<li>当指定的事情完成时，Event Table会将这个函数移入Event Queue。</li>
+<li>主线程内的任务执行完毕为空，会去Event Queue读取对应的函数，进入主线程执行。</li>
+<li>上述过程会不断重复，也就是常说的Event Loop(事件循环)。</li>
+</ol>
+<p><img src="/2022/04/27/%E5%AE%8F%E9%98%9F%E5%88%97%E5%92%8C%E5%BE%AE%E9%98%9F%E5%88%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/1.png"></p>
+<ul>
 <li><strong>宏队列</strong>:<ul>
 <li>用于保存待执行的宏任务（回调）,比如：定时器回调，DOM事件回调,ajax回调</li>
 </ul>
@@ -496,13 +496,8 @@ js">
 <li>用来保存待执行的微任务（回调）,比如：promise的回调，MutationObserver的回调</li>
 </ul>
 </li>
-</ul>
-<p>js执行时会区别这2个队列</p>
-<ol>
-<li>js引擎首先必须先执行所有的初始化同步任务代码</li>
 <li>每次准备取出第一个宏任务执行前，都要将所有的微任务一个一个取出来执行，也就是微任务比宏任务先执行</li>
-</ol>
-<p><img src="/2022/04/27/%E5%AE%8F%E9%98%9F%E5%88%97%E5%92%8C%E5%BE%AE%E9%98%9F%E5%88%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/1.png"></p>
+</ul>
 
                 
             </div>
