@@ -213,6 +213,25 @@
     
     
     <entry>
+      <title>new_Vue以后发生的事情</title>
+      <link href="/2021/03/19/new-Vue%E4%BB%A5%E5%90%8E%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85/"/>
+      <url>/2021/03/19/new-Vue%E4%BB%A5%E5%90%8E%E5%8F%91%E7%94%9F%E7%9A%84%E4%BA%8B%E6%83%85/</url>
+      
+        <content type="html"><![CDATA[<h2 id="聊一聊new-Vue之后发生的事情"><a href="#聊一聊new-Vue之后发生的事情" class="headerlink" title="聊一聊new Vue之后发生的事情?"></a>聊一聊new Vue之后发生的事情?</h2><ol><li><p>new Vue会调用Vue原型链上的_init方法对Vue实例进行初始化;</p></li><li><p>首先是initLifecycle初始化生命周期,对Vue实例内部的一些属性(如 children、parent、isMounted)进行初始化；</p></li><li><p>initEvents，初始化当前实例上的一些自定义事件(Vue.$on);</p></li><li><p>initRender,解析slots绑定在Vue实例上，绑定createElement方法在实例上；</p></li><li><p>完成对生命周期、自定义事件等一系列属性的初始化后，触发生命周期钩子beforeCreate；</p></li><li><p>initInjections，在初始化data和props之前完成依赖注入（类似于React.Context）;</p></li><li><p>initState，完成对data和props的初始化，同时对属性完成数据劫持内部，启用监听者对数据进行监听（更改）;</p></li><li><p>initProvide，对依赖注入进行解析；</p></li><li><p>完成对数据（state状态）的初始化后，触发生命周期钩子created；</p></li><li><p>进入挂载阶段，将vue模板语法通过vue-loader解析生成虚拟dom数，虚拟dom树与数据完成双向绑定，触发生命周期钩子beforeMount；</p></li><li><p>将解析好的虚拟dom树通过vue渲染成真实DOM，触发生命周期钩子mounted；</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vue首屏白屏怎么解决?</title>
       <link href="/2021/03/17/vue%E9%A6%96%E5%B1%8F%E7%99%BD%E5%B1%8F%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3/"/>
       <url>/2021/03/17/vue%E9%A6%96%E5%B1%8F%E7%99%BD%E5%B1%8F%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3/</url>
