@@ -4,6 +4,63 @@
   
     
     <entry>
+      <title>什么是高阶组件</title>
+      <link href="/2022/06/01/%E4%BB%80%E4%B9%88%E6%98%AF%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/"/>
+      <url>/2022/06/01/%E4%BB%80%E4%B9%88%E6%98%AF%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="什么是高阶组件？"><a href="#什么是高阶组件？" class="headerlink" title="什么是高阶组件？"></a>什么是高阶组件？</h2><p><strong>高阶组件就是一个函数，该函数接受一个组件作为参数，并返回一个新的组件</strong><br>基本上，这是从React的组成性质派生的一种模式，我们称他们为”纯”组件，因为他们可以去接受任何动态提供的子组件，但他们不会修改或复制其输入组件的任何行为</p><ul><li>高阶组件（HOC）是React用于复用组件逻辑的一种高级技巧</li><li>高阶组件的参数为一个组件返回一个新组件</li><li>组件将props转化为UI，而高阶组件时将组件转化为另一个组件</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> React </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>浏览器存储</title>
+      <link href="/2022/05/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AD%98%E5%82%A8/"/>
+      <url>/2022/05/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AD%98%E5%82%A8/</url>
+      
+        <content type="html"><![CDATA[<h2 id="我们经常需要对业务中的一些数据进行存储，通常可以分为-短暂性存储-和-持久性储存。"><a href="#我们经常需要对业务中的一些数据进行存储，通常可以分为-短暂性存储-和-持久性储存。" class="headerlink" title="我们经常需要对业务中的一些数据进行存储，通常可以分为 短暂性存储 和 持久性储存。"></a>我们经常需要对业务中的一些数据进行存储，通常可以分为 短暂性存储 和 持久性储存。</h2><ul><li><p>短暂性的时候，我们只需要将数据存在内存中，只在运行时可用</p></li><li><p>持久性存储，可以分为 浏览器端 与 服务器端</p></li><li><p>浏览器</p><ul><li>cookie: 通常用于存储用户身份，登录状态等<ul><li>http 中自动携带， 体积上限为 4K， 可自行设置过期时间</li></ul></li><li>localStorage &#x2F; sessionStorage: 长久储存&#x2F;窗口关闭删除， 体积限制为 4~5M</li><li>indexDB</li></ul></li><li><p>服务器</p><ul><li>分布式缓存 redis</li><li>数据库</li></ul></li></ul><h3 id="cookie和localStorage、session、indexDB-的区别"><a href="#cookie和localStorage、session、indexDB-的区别" class="headerlink" title="cookie和localStorage、session、indexDB 的区别"></a>cookie和localStorage、session、indexDB 的区别</h3><table><thead><tr><th align="left">特性</th><th align="left">cookie</th><th align="left">localStorage</th><th align="left">sessionStorage</th><th align="left">indexDB</th></tr></thead><tbody><tr><td align="left">数据生命周期</td><td align="left">一般由服务器生成，可以设置过期时间</td><td align="left">除非被清理，否则一直存在</td><td align="left">页面关闭就清理</td><td align="left">除非被清理，否则一直存在</td></tr><tr><td align="left">数据存储大小</td><td align="left">4K</td><td align="left">5M</td><td align="left">5M</td><td align="left">无限</td></tr><tr><td align="left">与服务端通信</td><td align="left">每次都会携带在 header 中，对于请求性能影响</td><td align="left">不参与</td><td align="left">不参与</td><td align="left">不参与</td></tr></tbody></table><hr><p><strong>对于 cookie，我们还需要注意安全性</strong></p><table><thead><tr><th align="left">属性</th><th align="left">作用</th></tr></thead><tbody><tr><td align="left">value</td><td align="left">如果用于保存用户登录态，应该将该值加密，不能使用明文的用户标识</td></tr><tr><td align="left">http-only</td><td align="left">不能通过 JS访问 Cookie，减少 XSS攻击</td></tr><tr><td align="left">secure</td><td align="left">只能在协议为 HTTPS 的请求中携带</td></tr><tr><td align="left">same-site</td><td align="left">规定浏览器不能在跨域请求中携带 Cookie，减少 CSRF 攻击</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 浏览器 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>浏览器缓存机制</title>
+      <link href="/2022/05/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/"/>
+      <url>/2022/05/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</url>
+      
+        <content type="html"><![CDATA[<h2 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a>缓存机制</h2><ol><li>首先得明确 http 缓存的好处<br>减少了冗余的数据传输，减少网费<br>减少服务器端的压力<br>Web 缓存能够减少延迟与网络阻塞，进而减少显示某个资源所用的时间<br>加快客户端加载网页的速度</li><li>常见 http 缓存的类型</li></ol><p>私有缓存（一般为本地浏览器缓存）<br>代理缓存</p><ol start="3"><li>然后谈谈本地缓存<pre class="language-none"><code class="language-none">本地缓存是指浏览器请求资源时命中了浏览器本地的缓存资源，浏览器并不会发送真正的请求给服务器了。</code></pre>第一次浏览器发送请求给服务器时，此时浏览器还没有本地缓存副本，服务器返回资源给浏览器，响应码是200 OK，浏览器收到资源后，把资源和对应的响应头一起缓存下来<br>第二次浏览器准备发送请求给服务器时候，浏览器会先检查上一次服务端返回的响应头信息中的Cache-Control，它的值是一个相对值，单位为秒，表示资源在客户端缓存的最大有效期，过期时间为第一次请求的时间减去Cache-Control的值，过期时间跟当前的请求时间比较，如果本地缓存资源没过期，那么命中缓存，不再请求服务器<br>如果没有命中，浏览器就会把请求发送给服务器，进入缓存协商阶段。</li></ol><pre class="language-none"><code class="language-none">与本地缓存相关的头有：Cache-Control、Expires，Cache-Control有多个可选值代表不同的意义，而Expires就是一个日期格式的绝对值</code></pre><h3 id="缓存位置"><a href="#缓存位置" class="headerlink" title="缓存位置"></a>缓存位置</h3><p><strong>浏览器缓存的位置的话，可以分为四种,优先级从高到低排列分别👇</strong></p><ul><li>Service Worker</li><li>Memory Cache</li><li>Disk Cache</li><li>Push Cache</li></ul><p><strong>Service Worker</strong></p><pre class="language-none"><code class="language-none">这个应用场景比如PWA，它借鉴了Web Worker思路，由于它脱离了浏览器的窗体，因此无法直接访问DOM。它能完成的功能比如：离线缓存、消息推送和网络代理，其中离线缓存就是Service Worker Cache。</code></pre><p><strong>Memory Cache</strong></p><pre class="language-none"><code class="language-none">指的是内存缓存，从效率上讲它是最快的，从存活时间来讲又是最短的，当渲染进程结束后，内存缓存也就不存在了。</code></pre><p><strong>Disk Cache</strong></p><pre class="language-none"><code class="language-none">存储在磁盘中的缓存，从存取效率上讲是比内存缓存慢的，优势在于存储容量和存储时长。</code></pre><p><strong>Push Cache</strong></p><pre class="language-none"><code class="language-none">推送缓存，这算是浏览器中最后一道防线吧，它是HTTP&#x2F;2的内容</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> 浏览器 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>事件循环和宏任务微任务</title>
       <link href="/2022/04/27/%E5%AE%8F%E9%98%9F%E5%88%97%E5%92%8C%E5%BE%AE%E9%98%9F%E5%88%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/"/>
       <url>/2022/04/27/%E5%AE%8F%E9%98%9F%E5%88%97%E5%92%8C%E5%BE%AE%E9%98%9F%E5%88%97%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F/</url>
@@ -194,6 +251,25 @@
     
     
     <entry>
+      <title>js类型检测</title>
+      <link href="/2021/12/05/js%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B/"/>
+      <url>/2021/12/05/js%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B/</url>
+      
+        <content type="html"><![CDATA[<h3 id="JS内置类型"><a href="#JS内置类型" class="headerlink" title="JS内置类型"></a>JS内置类型</h3><p><img src="/2021/12/05/js%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B/1.png"></p><p>JavaScript一共有8种数据类型，其中有7种基本数据类型：Undefined、Null、Boolean、Number、String、<br>Symbol（es6新增，表示独一无二的值）和BigInt（es10新增）；</p><p><strong>原始数据类型</strong><br>基础类型存储在栈内存，被引用或拷贝时，会创建一个完全相等的变量；占据空间小、大小固定，属于被频繁使用数据，所以放入栈中存储。</p><hr><p><strong>引用数据类型</strong><br>引用类型存储在堆内存，存储的是地址，多个引用指向同一个地址，这里会涉及一个“共享”的概念；占据空间大、大小不固定。<br>引用数据类型在栈中存储了指针，该指针指向堆中该实体的起始地址。当解释器寻找引用值时，会首先检索其在栈中的地址，取得地址后从堆中获得实体。</p><hr><h3 id="数据类型检测"><a href="#数据类型检测" class="headerlink" title="数据类型检测"></a>数据类型检测</h3><ol><li>typeof<ul><li>typeof 对于原始类型来说，除了 null 都可以显示正确的类型</li></ul></li><li>instanceof<ul><li>可以正确的判断对象的类型，因为内部机制是通过判断对象的原型链中是不是能找到类型的 prototype</li></ul></li><li>constructor<ul><li>如果我创建一个对象，更改它的原型，constructor就会变得不可靠了</li></ul></li><li>Object.prototype.toString.call()<ul><li>toString() 是 Object 的原型方法，调用该方法，可以统一返回格式为 “[object Xxx]” 的字符串</li></ul></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> javascript </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>vue中$nextTick作用于原理</title>
       <link href="/2021/11/12/vue%E4%B8%AD-nextTick%E4%BD%9C%E7%94%A8%E4%BA%8E%E5%8E%9F%E7%90%86/"/>
       <url>/2021/11/12/vue%E4%B8%AD-nextTick%E4%BD%9C%E7%94%A8%E4%BA%8E%E5%8E%9F%E7%90%86/</url>
@@ -213,11 +289,49 @@
     
     
     <entry>
+      <title>浏览器如何渲染网页?</title>
+      <link href="/2021/08/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E7%BD%91%E9%A1%B5/"/>
+      <url>/2021/08/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E7%BD%91%E9%A1%B5/</url>
+      
+        <content type="html"><![CDATA[<h2 id="渲染机制"><a href="#渲染机制" class="headerlink" title="渲染机制"></a>渲染机制</h2><p><strong>浏览器渲染一共有五步</strong></p><ol><li>处理 HTML 并构建 DOM 树。</li><li>处理 CSS构建 CSSOM 树。</li><li>将 DOM 与 CSSOM 合并成一个渲染树。</li><li>根据渲染树来布局，计算每个节点的位置。</li><li>调用 GPU 绘制，合成图层，显示在屏幕上</li></ol><p><strong>第四步和第五步是最耗时的部分，这两步合起来，就是我们通常所说的渲染</strong></p><p><img src="/2021/08/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E7%BD%91%E9%A1%B5/19.png"><br><img src="/2021/08/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E7%BD%91%E9%A1%B5/20.png"></p><p><strong>重绘和回流是渲染步骤中的一小节，但是这两个步骤对于性能影响很大</strong></p><ul><li>重绘是当节点需要更改外观而不会影响布局的，比如改变 color 就叫称为重绘</li><li>回流是布局或者几何属性需要改变就称为回流。<pre class="language-none"><code class="language-none">回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变深层次的节点很可能导致父节点的一系列回流</code></pre></li></ul><h3 id="以下几个动作可能会导致性能问题"><a href="#以下几个动作可能会导致性能问题" class="headerlink" title="以下几个动作可能会导致性能问题"></a>以下几个动作可能会导致性能问题</h3><ul><li>改变 window 大小</li><li>改变字体</li><li>添加或删除样式</li><li>文字改变</li><li>定位或者浮动</li><li>盒模型</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 浏览器 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>单页应用和多页应用的区别</title>
       <link href="/2021/04/28/%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E5%92%8C%E5%A4%9A%E9%A1%B5%E5%BA%94%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
       <url>/2021/04/28/%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E5%92%8C%E5%A4%9A%E9%A1%B5%E5%BA%94%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
       
         <content type="html"><![CDATA[<h2 id="单页应用和多页应有的区别"><a href="#单页应用和多页应有的区别" class="headerlink" title="单页应用和多页应有的区别?"></a>单页应用和多页应有的区别?</h2><h3 id="概念："><a href="#概念：" class="headerlink" title="概念："></a>概念：</h3><ul><li>SPA单页面应用（SinglePage Web Application），指只有一个主页面的应用，一开始只需要加载一次js、css等相关资源。所有内容都包含在主页面，对每一个功能模块组件化。单页应用跳转，就是切换相关组件，仅仅刷新局部资源。</li><li>MPA多页面应用 （MultiPage Application），指有多个独立页面的应用，每个页面必须重复加载js、css等相关资源。多页应用跳转，需要整页资源刷新。</li></ul><p><img src="/2021/04/28/%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E5%92%8C%E5%A4%9A%E9%A1%B5%E5%BA%94%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB/1.jpg"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HashRouter和HistoryRouter的区别和原理</title>
+      <link href="/2021/04/03/HashRouter%E5%92%8CHistoryRouter%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%8E%9F%E7%90%86/"/>
+      <url>/2021/04/03/HashRouter%E5%92%8CHistoryRouter%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%8E%9F%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<h2 id="HashRouter和HistoryRouter的区别和原理"><a href="#HashRouter和HistoryRouter的区别和原理" class="headerlink" title="HashRouter和HistoryRouter的区别和原理"></a>HashRouter和HistoryRouter的区别和原理</h2><p><strong>vue-router</strong>是Vue官方的路由管理器。它和Vue.js的核心深度集成，让构建单页面应用变得简单。<br>vue-router默认hash模式，还有一种是history模式。</p><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><ul><li>hash路由:<br>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; &gt;<br>hash模式的工作原理是hashchange事件，可以在window监听hash的变化，我们在url后面随便添加一个#xx触发这个事件。<br>vue-router默认是hash模式–使用url的hash来模拟一个完整的url，于是当url改变的时候，页面不会重新加载，也就是单页应用<br>当#后面的hash发生变化，不会导致浏览器向服务器发出请求，浏览器不发出请求就不会刷新页面，并且会触发hashChange这个事件，通过监听<br>hash值的变化来实现更新页面部分内容操作<br>对于hash模式会创建hashHistory对象，在访问不同的路由的时候，会发生两件事</li></ul><p>——- &gt;<br>HashHistory.push()将新的路由添加到浏览器访问的历史的栈顶，和hasHistory.replace()替换到当前栈顶路由</p><ul><li>history路由:<br>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; &gt;<br>主要使用HTML5的pushState（）和replaceState（）这两个api结合window.popstate事件（监听浏览器前进后退）来实现的，pushState()可以改变<br>url地址且不会发送请求，replaceState()可以读取历史记录栈，还可以对浏览器记录进行修改</li></ul><h3 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h3><ol><li>hash模式不美观，history模式较优雅</li><li>pushState设置的新URL可以与当前URL同源的任意URL；而hash只可修改#后面的部分，故只可设置与当前同文档的URL</li><li>pushState设置的新URL可以与当前URL一模一样，这样也会把记录添加到栈中，而hash设置的新值与原来不一样才会触发记录添加到栈中</li><li>pushState通过stateObject可以添加任意类型的数据到记录中；而hash只可添加短字符串</li><li>pushState可额外设置title属性供后续使用</li><li>hash兼容IE8以上，history兼容IE10以上</li><li>history模式需要后端配合将所有访问都指向index.html，否则用户刷新页面,会导致404错误</li></ol><p><strong>使用方法</strong></p><pre class="language-none"><code class="language-none">&lt; script &gt;  &#x2F;&#x2F; hash路由原理*************************** &#x2F;&#x2F; 监听hashchange方法 window.addEventListener(&#39;hashchange&#39;,()&#x3D;&gt;&#123; div.innerHTML&#x3D;location.hash.slice(1) &#125;) &#x2F;&#x2F; history路由原理************************ &#x2F;&#x2F; 利用html5的history的pushState方法结合window.popstate事件（监听浏览器前进后退） function routerChange (pathname)&#123; history.pushState(null,null,pathname) div.innerHTML&#x3D; location.pathname &#125; window.addEventListener(&#39;popstate&#39;,()&#x3D;&gt;&#123; div.innerHTML &#x3D; location.pathname &#125;) &lt;&#x2F;script&gt;</code></pre>]]></content>
       
       
       <categories>
@@ -280,6 +394,63 @@
       <categories>
           
           <category> javascript </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>React中的类组件和函数组件的区别</title>
+      <link href="/2020/04/10/React%E4%B8%AD%E7%9A%84%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%92%8C%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+      <url>/2020/04/10/React%E4%B8%AD%E7%9A%84%E7%B1%BB%E7%BB%84%E4%BB%B6%E5%92%8C%E5%87%BD%E6%95%B0%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+      
+        <content type="html"><![CDATA[<h2 id="React中的类组件和函数组件之间有什么区别？"><a href="#React中的类组件和函数组件之间有什么区别？" class="headerlink" title="React中的类组件和函数组件之间有什么区别？"></a>React中的类组件和函数组件之间有什么区别？</h2><h3 id="类组件-class-components"><a href="#类组件-class-components" class="headerlink" title="类组件(class components)"></a>类组件(class components)</h3><ul><li><p>无论是使用函数或者类来声明一个组件，它绝不能修改组件的props。</p><ul><li>所有React组件都必须是纯函数，并禁止修改自身的props。</li></ul></li><li><p>React是单项数据流，父组件改变了属性，那么子组件视图会更新。</p><ul><li>属性props是外界传递过来的，状态state是组件本身的，状态可以在组件中任意修改</li><li>组件的属性和状态改变都会更新视图。</li></ul></li></ul><pre class="language-none"><code class="language-none">class Welcome extends React.Component &#123;        render() &#123;                return ( &lt; h1 &gt; Welcome &#123;                    this.props.name                &#125; &lt; &#x2F;h1&gt;);&#125;&#125;ReactDOM.render(&lt;Welcomename&#x3D;&#39;react&#39;&#x2F; &gt; , document.getElementById(&#39;root&#39;));</code></pre><h3 id="函数组件（functional-component）"><a href="#函数组件（functional-component）" class="headerlink" title="函数组件（functional component）"></a>函数组件（functional component）</h3><p>函数组件接受一个单一的props对象并返回了一个React元素</p><pre class="language-none"><code class="language-none">function Welcome(props) &#123;    return &lt;h1 &gt; Welcome &#123;        props.name    &#125; &lt; &#x2F;h1&gt;&#125;ReactDOM.render(&lt;Welcomename&#x3D;&#39;react&#39;&#x2F; &gt; , document.getElementById(&#39;root&#39;));</code></pre><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><h3 id="语法上区别"><a href="#语法上区别" class="headerlink" title="语法上区别"></a>语法上区别</h3><p>两者最明显的不同就是在语法上，函数组件是一个纯函数，它接受一个props对象返回一个react元素。<br>而类组件需要继承React.Component并且创建render函数返回react元素,这将会要更多的代码，虽然它们实现的效果相同。</p><h3 id="状态管理"><a href="#状态管理" class="headerlink" title="状态管理"></a>状态管理</h3><p>因为函数组件是一个纯函数，你不能在组件中使用setState()，这也是为什么把函数组件称作为无状态组件<br>如果你需要在你的组件中使用state，可以选择创建一个类组件或者将state提升到你的父组件中，然后通过props对象传递到子组件</p><h3 id="声明周期钩子"><a href="#声明周期钩子" class="headerlink" title="声明周期钩子"></a>声明周期钩子</h3><p>你不能再函数组件中使用声明周期钩子，原因和不能使用state一样，所有的生命周期钩子都来自于继承React.Component中<br>因此，如果你想使用声明周期钩子，那么需要使用类组件</p><p><strong>注意:</strong> 在react16.8版本添加了hooks，使得我们可以在函数组件中使用useState钩子去管理state，使用useEffect钩子去使用声明周期函数<br>因此，2,3两点不是他们的区别点，从这个改版中我们可以看出作者更看重函数组件，而且react团队曾提及到在react之后的版本将会对函数组件的性能方面进行提升</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> React </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>react组件通信方式</title>
+      <link href="/2020/04/06/react%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/"/>
+      <url>/2020/04/06/react%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/</url>
+      
+        <content type="html"><![CDATA[<h3 id="react组件通信的方式"><a href="#react组件通信的方式" class="headerlink" title="react组件通信的方式"></a>react组件通信的方式</h3><ul><li><p>父组件向子组件通讯：</p><ul><li>父组件可以向子组件通过传入props的方式，向子组件进行通讯</li></ul></li><li><p>子组件向父组件通讯:</p><ul><li>props + 回调的方式，父组件向子组件传递props进行通讯，此props为作用域为父组件自身的函数，子组件调用该函数，将子组件想要传递的信息作为参数，传递到父组件的作用域中</li></ul></li><li><p>兄弟组件通信:</p><ul><li>找到这两兄弟的节点共同的父节点，结合上面两种方式由父节点转发信息进行通讯</li></ul></li><li><p>跨层级通信:</p><ul><li>context设计的目的是为了共享那些对于一个组件树而言是’全局’的数据，例如当前认证的用户、主题或者首选语言，对于跨层的全局数据通过Context通信再合适不过</li></ul></li><li><p>发布订阅模式：</p><ul><li>发布者发布事件，订阅者监听事件并做出反应，我们可以通过引入event模块进行通讯</li></ul></li><li><p>全局状态管理工具:</p><ul><li>借助Redux或者Mobx等全局状态管理工具进行通信，这种工具会维护一个全局状态中心Store，并根据不同的事件产生新的状态</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> React </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>redux原理</title>
+      <link href="/2020/04/03/redux%E5%8E%9F%E7%90%86/"/>
+      <url>/2020/04/03/redux%E5%8E%9F%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<h2 id="redux原理"><a href="#redux原理" class="headerlink" title="redux原理"></a>redux原理</h2><p>**Redux:**Redux是当今最热门的前端开发库之一.它是javascript程序的可预测状态容器，用于整个应用的状态管理.<br>使用Redux开发的应用易于测试，可以在不同的环境中运行，并显示一致的行为。</p><h3 id="数据如何通过Redux流动？"><a href="#数据如何通过Redux流动？" class="headerlink" title="数据如何通过Redux流动？"></a>数据如何通过Redux流动？</h3><ol><li>首先，用户（通过View）发出Action，发出方式就用到了dispatch方法。</li><li>然后，Store自动调用Reducer，并且传入两个参数：当前State和Action，Reducer会返回新的State</li><li>State一旦发生变化，Store就会调用监听函数,来更新View。</li></ol><h3 id="Redux遵循的三个原则是什么？"><a href="#Redux遵循的三个原则是什么？" class="headerlink" title="Redux遵循的三个原则是什么？"></a>Redux遵循的三个原则是什么？</h3><ol><li>单一事实来源:整个应用的状态存储在单个store中的对象&#x2F;状态树里，单一状态树可以更容易地跟踪时间变化，并调试或检查应用程序.</li><li>状态是只读的:改变状态的唯一方法是触发一个动作。动作是描述变化的普通js对象，就像state是数据最小的表示一样，该操作是对数据更改的最小表示。</li><li>使用纯函数进行更改:为了指定状态树如果通过操作进行转化，你需要纯函数。纯函数是那些返回值仅取决于其参数值的函数。</li></ol><p>你对”单一事实来源”有什么理解？<br>Redux使用”Store”将程序的整个状态存储在同一个地方。因此所有的组件状态都存储在Store中，并且它从Store本身接受更新.<br>单一状态树可以更容易地跟踪时间的变化，并调试或检查程序。</p><h3 id="Redux组成"><a href="#Redux组成" class="headerlink" title="Redux组成:"></a>Redux组成:</h3><ul><li>Action  用于描述发生了什么事情的对象</li><li>Reducer  这是一个确定状态将如何变化的地方</li><li>Store 整个程序的状态&#x2F;对象树保存在Store中</li><li>view 只显示Store提供的数据</li></ul><h3 id="如何在Redux中定义Action？"><a href="#如何在Redux中定义Action？" class="headerlink" title="如何在Redux中定义Action？"></a>如何在Redux中定义Action？</h3><p>react中的Action必须具有type属性，该属性指示正在执行的ACTION的类型。必须将他们定义为字符串常量，并且<br>还可以向其添加更多的属性。</p><p>redux中，Action被名为Action Creators的函数所创建,以下是Action和Action Creator的示例：</p><pre class="language-none"><code class="language-none">function addTodo（text）&#123;    return &#123;    type:ADD_TODO,    text        &#125;    &#125;</code></pre><p>解释Reducer的作用<br>Reducers是纯函数,它规定应用程序的状态怎样因响应ACTION而改变。reducers通过接受先前的状态和action来工作,<br>然后它返回一个新的状态。它根据操作的类型确定需要执行哪种更新，然后返回新的值，如果不需要完成任务，它会返回原来的状态。</p><h3 id="Store在Redux中的意义是什么？"><a href="#Store在Redux中的意义是什么？" class="headerlink" title="Store在Redux中的意义是什么？"></a>Store在Redux中的意义是什么？</h3><p>Store是一个javascript对象,它可以保存程序的状态，并提供一些方法来访问状态、调度操作和注册侦听器.应用程序的整个状态&#x2F;对象树保存在单一存储中。因此，<br>redux非常简单且是可预测的。我们可以将中间件传递到Store来处理数据,并记录改变存储状态的各种操作。所有操作都通过reducer返回一个新的状态。</p><h3 id="redux有哪些优点"><a href="#redux有哪些优点" class="headerlink" title="redux有哪些优点?"></a>redux有哪些优点?</h3><ul><li>结果的可预测性 - 由于总是存在一个真实来源，即store，因此不存在如何将当前状态与动作和应用的其他部分同步的问题。</li><li>可维护性 - 代码变得更容易维护，具有可预测的结果和严格的结构。</li><li>服务器端渲染 - 你只需将服务器上创建的store传到客户端即可。这对初始化渲染非常有用，并且可以优化应用性能，从而提供更好的用户体验。</li><li>开发人员管理 - 从操作到状态更改，开发人员可以实时跟踪应用中发生的所有事情。</li><li>社区和生态系统 - Redux背后有一个巨大的社区，这使得它更加迷人。一个由才华横溢的人组成的大型社区为库的改进作出了贡献，并开发了各种应用。</li><li>易于测试 - Redux的代码主要是小巧，纯粹和独立的功能。这使代码可测试且独立。</li><li>组织 - Redux准确地说明了代码的组织方式，这使得代码在团队使用更加一致和简单。</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> React </category>
           
       </categories>
       
