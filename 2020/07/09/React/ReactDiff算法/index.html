@@ -4,14 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="js排序的几种方法, 阿龙">
-    <meta name="description" content="–
-js排序的几种方法
-sort（）排序
-var ar1&amp;#x3D;[2,4,6,8,1,3]
-var ar2&amp;#x3D;[2,16,36,8,56]
-ar1.sort()
-ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
+    <meta name="keywords" content="ReactDiff算法, 阿龙">
+    <meta name="description" content="diff算法是怎么运作每一种节点类型有自己的属性，也就是prop，每次进行diff的时候，react会先比较该节点类型
+，假如节点类型不一样，那么react会直接删除该节点，然后直接创建新的节点插入到其中，假如
+节点类型一样，那么会比较pr">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +21,7 @@ ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
 
     
 
-    <title>js排序的几种方法 | 阿龙</title>
+    <title>ReactDiff算法 | 阿龙</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +311,12 @@ ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://img2.baidu.com/it/u=4167581070,3859984764&fm=253&fmt=auto&app=138&f=JPEG?w=752&h=500')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://img0.baidu.com/it/u=3389409334,915357822&fm=253&fmt=auto&app=138&f=JPEG?w=833&h=500')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">js排序的几种方法</h1>
+                    <h1 class="description center-align post-title">ReactDiff算法</h1>
                 </div>
             </div>
         </div>
@@ -444,8 +440,8 @@ ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/javascript/" class="post-category">
-                                javascript
+                            <a href="/categories/React/" class="post-category">
+                                React
                             </a>
                         
                     </div>
@@ -457,7 +453,7 @@ ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-28
+                    2020-07-09
                 </div>
                 
 
@@ -481,96 +477,40 @@ ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>–</p>
-<h3 id="js排序的几种方法"><a href="#js排序的几种方法" class="headerlink" title="js排序的几种方法"></a>js排序的几种方法</h3><ol>
-<li><p><strong>sort（）排序</strong></p>
-<pre class="language-none"><code class="language-none">var ar1&#x3D;[2,4,6,8,1,3]
-var ar2&#x3D;[2,16,36,8,56]
-ar1.sort()
-ar2.sort()    &#x2F;&#x2F;这个方法值只能排序第一位数  也可以字符串进行排序
-console.log(ar1)    &#x2F;&#x2F;[1,2,3,4,6,8]
-console.log(ar2)    &#x2F;&#x2F;[16, 2, 36, 56, 8]
+                <h2 id="diff算法是怎么运作"><a href="#diff算法是怎么运作" class="headerlink" title="diff算法是怎么运作"></a>diff算法是怎么运作</h2><pre class="language-none"><code class="language-none">每一种节点类型有自己的属性，也就是prop，每次进行diff的时候，react会先比较该节点类型
+，假如节点类型不一样，那么react会直接删除该节点，然后直接创建新的节点插入到其中，假如
+节点类型一样，那么会比较prop是否有更新，假如有prop不一样，那么react会判定该节点有更新
+，那么重渲染该节点，然后在对其子节点进行比较，一层一层往下，直到没有子节点</code></pre>
 
-ar2.sort(function(a,b)&#123;
-    return a-b      &#x2F;&#x2F;a-b为升序
-    &#x2F;&#x2F;return b-a    &#x2F;&#x2F;b-a为降序
-&#125;)
-console.log(ar2)&#x2F;&#x2F;[2, 8, 16, 36, 56]</code></pre>
 
-</li>
-<li><p><strong>reverse()方法</strong></p>
-<pre class="language-none"><code class="language-none">var ar1&#x3D;[2,4,6,8,1,3]
-ar1.reverse()       &#x2F;&#x2F;此方法为倒序，也就是反过来。并不会进行大小排序
-console.log(ar1)    &#x2F;&#x2F;[3, 1, 8, 6, 4, 2]</code></pre>
-
-</li>
-<li><p><strong>冒泡排序</strong></p>
-<pre class="language-none"><code class="language-none">&#x2F;每轮依次比较相邻两个数的大小，后面比前面小则交换
-
-var b&#x3D;0&#x2F;&#x2F;设置用来调换位置的值
-
-var a&#x3D;[1,9,33,2,5,34,23,98,14]  &#x2F;&#x2F;冒泡排序
-for(var i&#x3D;0;i&lt;a.length;i++)&#123;
-    for(var j&#x3D;0;j&lt;a.length;j++)&#123;
-        if(a[j]&gt;a[j+1])&#123;
-            b&#x3D;a[j]
-            a[j]&#x3D;a[j+1]
-            a[j+1]&#x3D;b
-        &#125;
-    &#125;
-&#125;
-console.log(a)&#x2F;&#x2F;[1, 2, 5, 9, 14, 23, 33, 34, 98]</code></pre>
-</li>
-<li><p><strong>选择排序</strong></p>
-<pre class="language-none"><code class="language-none">通过比较首先选出最小的数放在第一个位置上，然后在其余的数中选出次小数放在第二个位置上,依此类推,直到所有的数成为有序序列。
-
-var arr &#x3D; [9, 8, 7, 6, 5, 4];
-&#x2F;&#x2F;用选择排序的方法从小到大排列数组元素。
-
-&#x2F;&#x2F;比较的轮数
-for(var i &#x3D; 0; i &lt; arr.length - 1; i++)&#123;
-&#x2F;&#x2F;每轮比较的次数
-　　for(var j &#x3D; i + 1; j &lt; arr.length; j++)&#123;
-　　　　if(arr[i] &gt; arr[j])&#123;
-　　　　　　var tmp &#x3D; arr[i];
-　　　　　　arr[i] &#x3D; arr[j];
-　　　　　　arr[j] &#x3D; tmp;
-　　　　&#125;
-　　&#125;
-&#125;
-alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
-</li>
-<li><p><strong>快速排序</strong><br>先从数列中取出一个数作为基准数<br>分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边<br>再对左右区间重复第二步，直到各区间只有一个数</p>
-<pre class="language-none"><code class="language-none">function quickSort(arr, i, j) &#123;
-  if(i &lt; j) &#123;
-    let left &#x3D; i;
-    let right &#x3D; j;
-    let mid &#x3D; Math.floor((left+right)&#x2F;2);
-    let temp &#x3D; arr[left];
-    arr[left] &#x3D; arr[mid];
-    arr[mid] &#x3D; temp;
-    let pivot &#x3D; arr[left];
-    while(i &lt; j) &#123;
-      while(arr[j] &gt;&#x3D; pivot &amp;&amp; i &lt; j) &#123;  &#x2F;&#x2F; 从后往前找比基准小的数
-        j--;
-      &#125;
-      if(i &lt; j) &#123;
-        arr[i++] &#x3D; arr[j];
-      &#125;
-      while(arr[i] &lt;&#x3D; pivot &amp;&amp; i &lt; j) &#123;  &#x2F;&#x2F; 从前往后找比基准大的数
-        i++;
-      &#125;
-      if(i &lt; j) &#123;
-        arr[j--] &#x3D; arr[i];
-      &#125;
-    &#125;
-    arr[i] &#x3D; pivot;
-    quickSort(arr, left, i-1);
-    quickSort(arr, i+1, right);
-    return arr;
-  &#125;
-&#125;</code></pre></li>
+<ul>
+<li>把树形结构按照层级分解，只比较同级元素。</li>
+<li>给列表结构的每个单元添加唯一的key属性，方便比较。</li>
+<li>React 只会匹配相同 class 的 component（这里面的class指的是组件的名字）</li>
+<li>合并操作，调用 component 的 setState 方法的时候, React 将其标记为 - dirty.到每一个事件循环结束, React 检查所有标记 dirty的 component重新绘制.</li>
+<li>选择性子树渲染。开发人员可以重写shouldComponentUpdate提高diff的性能</li>
+</ul>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p><strong>为了降低算法复杂度，React的diff会预设三个限制：</strong></p>
+<ol>
+<li>只对同级元素进行Diff。如果一个DOM节点在前后两次更新中跨越了层级，那么React不会尝试复用他。</li>
+<li>两个不同类型的元素会产生出不同的树。如果元素由div变为p，React会销毁div及其子孙节点，并新建p及其子孙节点。</li>
+<li>开发者可以通过 key prop来暗示哪些子元素在不同的渲染下能保持稳定</li>
 </ol>
+<h3 id="Diff的思路"><a href="#Diff的思路" class="headerlink" title="Diff的思路"></a>Diff的思路</h3><ol>
+<li>判断当前节点的更新属于哪种情况</li>
+<li>如果是新增，执行新增逻辑</li>
+<li>如果是删除，执行删除逻辑</li>
+<li>如果是更新，执行更新逻辑</li>
+</ol>
+<ul>
+<li>按这个方案，其实有个隐含的前提——不同操作的优先级是相同的</li>
+<li>但是React团队发现，在日常开发中，相较于新增和删除，更新组件发生的频率更高。所以Diff会优先判断当前节点是否属于更新</li>
+<li>基于以上原因，Diff算法的整体逻辑会经历两轮遍历：</li>
+</ul>
+<p>第一轮遍历：处理更新的节点。<br>第二轮遍历：处理剩下的不属于更新的节点。</p>
+<p><img src="https://s.poetries.work/images/20210307225249.png"></p>
+<h3 id="diff算法的作用"><a href="#diff算法的作用" class="headerlink" title="diff算法的作用"></a>diff算法的作用</h3><p>计算出Virtual DOM中真正变化的部分，并只针对该部分进行原生DOM操作，而非重新渲染整个页面。</p>
+<h3 id="传统diff算法"><a href="#传统diff算法" class="headerlink" title="传统diff算法"></a>传统diff算法</h3><p>通过循环递归对节点进行依次对比，算法复杂度达到 O(n^3) ，n是树的节点数，这个有多可怕呢？<br>——如果要展示1000个节点，得执行上亿次比较。。即便是CPU快能执行30亿条命令，也很难在一秒内计算出差异。</p>
 
                 
             </div>
@@ -597,7 +537,7 @@ alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/03/28/javascript/js%E6%8E%92%E5%BA%8F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/">http://example.com/2020/03/28/javascript/js%E6%8E%92%E5%BA%8F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</a>
+                    <a href="http://example.com/2020/07/09/React/ReactDiff%E7%AE%97%E6%B3%95/">http://example.com/2020/07/09/React/ReactDiff%E7%AE%97%E6%B3%95/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -810,12 +750,12 @@ alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/03/React/redux%E5%8E%9F%E7%90%86/">
+                <a href="/2021/03/17/Vue/vue%E9%A6%96%E5%B1%8F%E7%99%BD%E5%B1%8F%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3/">
                     <div class="card-image">
                         
-                        <img src="https://img2.baidu.com/it/u=2294778957,1427498571&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281" class="responsive-img" alt="redux原理">
+                        <img src="https://img2.baidu.com/it/u=3173006979,3651020575&fm=253&fmt=auto&app=138&f=JPEG?w=755&h=500" class="responsive-img" alt="vue首屏白屏怎么解决?">
                         
-                        <span class="card-title">redux原理</span>
+                        <span class="card-title">vue首屏白屏怎么解决?</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -826,14 +766,14 @@ alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-17
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/React/" class="post-category">
-                                    React
+                            <a href="/categories/Vue/" class="post-category">
+                                    Vue
                                 </a>
                             
                             
@@ -850,12 +790,12 @@ alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/09/React/React%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F/">
+                <a href="/2020/06/28/javascript/json%E5%92%8Cxml%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
                     <div class="card-image">
                         
-                        <img src="https://img1.baidu.com/it/u=2310170655,486191485&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281" class="responsive-img" alt="React声明周期">
+                        <img src="https://img1.baidu.com/it/u=3596676013,791402308&fm=253&fmt=auto&app=138&f=JPEG?w=591&h=500" class="responsive-img" alt="json和xml数据的区别是什么？">
                         
-                        <span class="card-title">React声明周期</span>
+                        <span class="card-title">json和xml数据的区别是什么？</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -866,14 +806,14 @@ alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/React/" class="post-category">
-                                    React
+                            <a href="/categories/javascript/" class="post-category">
+                                    javascript
                                 </a>
                             
                             

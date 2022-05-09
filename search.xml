@@ -384,6 +384,25 @@
     
     
     <entry>
+      <title>ReactDiff算法</title>
+      <link href="/2020/07/09/React/ReactDiff%E7%AE%97%E6%B3%95/"/>
+      <url>/2020/07/09/React/ReactDiff%E7%AE%97%E6%B3%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="diff算法是怎么运作"><a href="#diff算法是怎么运作" class="headerlink" title="diff算法是怎么运作"></a>diff算法是怎么运作</h2><pre class="language-none"><code class="language-none">每一种节点类型有自己的属性，也就是prop，每次进行diff的时候，react会先比较该节点类型，假如节点类型不一样，那么react会直接删除该节点，然后直接创建新的节点插入到其中，假如节点类型一样，那么会比较prop是否有更新，假如有prop不一样，那么react会判定该节点有更新，那么重渲染该节点，然后在对其子节点进行比较，一层一层往下，直到没有子节点</code></pre><ul><li>把树形结构按照层级分解，只比较同级元素。</li><li>给列表结构的每个单元添加唯一的key属性，方便比较。</li><li>React 只会匹配相同 class 的 component（这里面的class指的是组件的名字）</li><li>合并操作，调用 component 的 setState 方法的时候, React 将其标记为 - dirty.到每一个事件循环结束, React 检查所有标记 dirty的 component重新绘制.</li><li>选择性子树渲染。开发人员可以重写shouldComponentUpdate提高diff的性能</li></ul><h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p><strong>为了降低算法复杂度，React的diff会预设三个限制：</strong></p><ol><li>只对同级元素进行Diff。如果一个DOM节点在前后两次更新中跨越了层级，那么React不会尝试复用他。</li><li>两个不同类型的元素会产生出不同的树。如果元素由div变为p，React会销毁div及其子孙节点，并新建p及其子孙节点。</li><li>开发者可以通过 key prop来暗示哪些子元素在不同的渲染下能保持稳定</li></ol><h3 id="Diff的思路"><a href="#Diff的思路" class="headerlink" title="Diff的思路"></a>Diff的思路</h3><ol><li>判断当前节点的更新属于哪种情况</li><li>如果是新增，执行新增逻辑</li><li>如果是删除，执行删除逻辑</li><li>如果是更新，执行更新逻辑</li></ol><ul><li>按这个方案，其实有个隐含的前提——不同操作的优先级是相同的</li><li>但是React团队发现，在日常开发中，相较于新增和删除，更新组件发生的频率更高。所以Diff会优先判断当前节点是否属于更新</li><li>基于以上原因，Diff算法的整体逻辑会经历两轮遍历：</li></ul><p>第一轮遍历：处理更新的节点。<br>第二轮遍历：处理剩下的不属于更新的节点。</p><p><img src="https://s.poetries.work/images/20210307225249.png"></p><h3 id="diff算法的作用"><a href="#diff算法的作用" class="headerlink" title="diff算法的作用"></a>diff算法的作用</h3><p>计算出Virtual DOM中真正变化的部分，并只针对该部分进行原生DOM操作，而非重新渲染整个页面。</p><h3 id="传统diff算法"><a href="#传统diff算法" class="headerlink" title="传统diff算法"></a>传统diff算法</h3><p>通过循环递归对节点进行依次对比，算法复杂度达到 O(n^3) ，n是树的节点数，这个有多可怕呢？<br>——如果要展示1000个节点，得执行上亿次比较。。即便是CPU快能执行30亿条命令，也很难在一秒内计算出差异。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> React </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>json和xml数据的区别是什么？</title>
       <link href="/2020/06/28/javascript/json%E5%92%8Cxml%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
       <url>/2020/06/28/javascript/json%E5%92%8Cxml%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/</url>
@@ -479,6 +498,25 @@
     
     
     <entry>
+      <title>React声明周期</title>
+      <link href="/2020/03/09/React/React%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F/"/>
+      <url>/2020/03/09/React/React%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F/</url>
+      
+        <content type="html"><![CDATA[<h2 id="react-旧版生命周期"><a href="#react-旧版生命周期" class="headerlink" title="react 旧版生命周期"></a>react 旧版生命周期</h2><p><img src="http://api.fly63.com/vue_blog/public/Uploads/20200225/5e54fb11b1f7b.jpg"></p><p><strong>主要可分为 初始化阶段、挂载阶段、更新阶段、卸载阶段。</strong></p><h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><p>发生在 constructor 中的内容，在 constructor 中进行 state、props 的初始化，<br>在这个阶段修改 state，不会执行更新阶段的生命周期，可以直接对 state 赋值。</p><h3 id="挂载阶段"><a href="#挂载阶段" class="headerlink" title="挂载阶段"></a>挂载阶段</h3><ul><li>对应的生命周期为：<ul><li>componentWillMount<ul><li>发生在 render 函数之前，还没有挂载 Dom</li></ul></li><li>render</li><li>componentDidMount<ul><li>发生在 render 函数之后，已经挂载 Dom</li></ul></li></ul></li></ul><h3 id="更新阶段"><a href="#更新阶段" class="headerlink" title="更新阶段"></a>更新阶段</h3><p><strong>更新阶段分为由 state 更新引起和 props 更新引起</strong></p><pre class="language-none"><code class="language-none">* props    * 1. componentWillReceiveProps(nextProps,nextState)        这个生命周期主要为我们提供对 props 发生改变的监听，如果你需要在 props 发生改变后，相应改变组件的一些 state。在这个方法中改变 state 不会二次渲染，而是直接合并 state。    * 2. shouldComponentUpdate(nextProps,nextState)        这个生命周期需要返回一个 Boolean 类型的值，判断是否需要更新渲染组件，优化 react 应用的主要手段之一，当返回 false 就不会再向下执行生命周期了，在这个阶段不可以 setState()，会导致循环调用。    * 3. componentWillUpdate(nextProps,nextState)        这个生命周期主要是给我们一个时机能够处理一些在 Dom 发生更新之前的事情，如获得 Dom 更新前某些元素的坐标、大小等，在这个阶段不可以 setState()，会导致循环调用。    **一直到这里 this.props 和 this.state 都还未发生更新**    * 4. render        执行 render 函数。    * 5. componentDidUpdate(prevProps, prevState)         在此时已经完成渲染，Dom 已经发生变化，State 已经发生更新，prevProps、prevState 均为上一个状态的值。* state（具体同上）    * 1. shouldComponentUpdate    * 2. componentWillUpdate    * 3. render    * 4. componentDidUpdate</code></pre><h3 id="卸载阶段"><a href="#卸载阶段" class="headerlink" title="卸载阶段"></a>卸载阶段</h3><ul><li>componentWillUnmount<ul><li>componentWillUnmount 会在组件卸载及销毁之前直接调用。在此方法中执行必要的清理操作，例如，清除 timer，取消网络请求或清除在 componentDidMount  中创建的订阅等。componentWillUnmount 中不应调用 setState，因为该组件将永远不会重新渲染。组件实例卸载后，将永远不会再挂载它。</li></ul></li></ul><h2 id="React-新版生命周期"><a href="#React-新版生命周期" class="headerlink" title="React 新版生命周期"></a>React 新版生命周期</h2><p><strong>React 16 中删除了如下三个生命周期。</strong></p><ul><li><p>componentWillMount</p></li><li><p>componentWillReceiveProps</p></li><li><p>componentWillUpdate</p></li></ul><p>官方给出的解释是 react 打算在17版本推出新的 Async Rendering，提出一种可被打断的生命周期，而可以被打断的阶段正是实际 dom 挂载之前的虚拟 dom 构建阶段，也就是要被去掉的三个生命周期。<br>本身这三个生命周期所表达的含义是没有问题的，但 react 官方认为我们（开发者）也许在这三个函数中编写了有副作用的代码，所以要替换掉这三个生命周期，因为这三个生命周期可能在一次 render 中被反复调用多次</p><p><strong>取代这三个生命周期的是两个新生命周期</strong><br>static getDerivedStateFromProps(nextProps,nextState)<br>在 React 16.3.0 版本中：在组件实例化、接收到新的 props 时会被调用<br>在 React 16.4.0 版本中：在组件实例化、接收到新的 props 、组件状态更新时会被调用</p><pre class="language-none"><code class="language-none">方法可以返回一个对象，将会和 state 发生合并，且不会触发 re-render。这个生命周期主要为我们提供了一个可以在组件实例化或 props、state 发生变化后根据 props 修改 state 的一个时机，用来替代旧的生命周期中的 componentWillMount、ComponentWillReceiveProps。因为是一个静态方法，this 指向不是组件实例。</code></pre><p>getSnapshotBeforeUpdate（prevProps,prevState）</p><p>在 render 函数调用之后，实际的 Dom 渲染之前，在这个阶段我们可以拿到上一个状态 Dom 元素的坐标、大小的等相关信息。用于替代旧的生命周期中的 componentWillUpdate。<br>该函数的返回值将会作为 componentDidUpdate 的第三个参数出现</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> React </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>This指向问题</title>
       <link href="/2020/02/05/javascript/This%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/"/>
       <url>/2020/02/05/javascript/This%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/</url>
@@ -489,6 +527,25 @@
       <categories>
           
           <category> javascript </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>HTTP状态码及含义</title>
+      <link href="/2020/01/09/%E6%B5%8F%E8%A7%88%E5%99%A8/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E5%8F%8A%E5%90%AB%E4%B9%89/"/>
+      <url>/2020/01/09/%E6%B5%8F%E8%A7%88%E5%99%A8/HTTP%E7%8A%B6%E6%80%81%E7%A0%81%E5%8F%8A%E5%90%AB%E4%B9%89/</url>
+      
+        <content type="html"><![CDATA[<h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><ul><li>1XX：信息状态码<ul><li>100 Continue 继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息</li></ul></li><li>2XX：成功状态码<ul><li>200 OK 正常返回信息</li><li>201 Created 请求成功并且服务器创建了新的资源</li><li>202 Accepted 服务器已接受请求，但尚未处理</li></ul></li><li>3XX：重定向<ul><li>301 Moved Permanently 请求的网页已永久移动到新位置。</li><li>302 Found 临时性重定向。</li><li>303 See Other 临时性重定向，且总是使用 GET 请求新的 URI。</li><li>304 Not Modified 自从上次请求后，请求的网页未修改过。</li></ul></li><li>4XX：客户端错误<ul><li>400 Bad Request 服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。</li><li>401 Unauthorized 请求未授权。</li><li>403 Forbidden 禁止访问。</li><li>404 Not Found 找不到如何与 URI 相匹配的资源。</li></ul></li><li>5XX: 服务器错误<ul><li>500 Internal Server Error 最常见的服务器端错误。</li><li>503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。</li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 浏览器 </category>
           
       </categories>
       

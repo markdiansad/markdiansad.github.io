@@ -4,14 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="js排序的几种方法, 阿龙">
-    <meta name="description" content="–
-js排序的几种方法
-sort（）排序
-var ar1&amp;#x3D;[2,4,6,8,1,3]
-var ar2&amp;#x3D;[2,16,36,8,56]
-ar1.sort()
-ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
+    <meta name="keywords" content="React声明周期, 阿龙">
+    <meta name="description" content="react 旧版生命周期
+主要可分为 初始化阶段、挂载阶段、更新阶段、卸载阶段。
+初始化阶段发生在 constructor 中的内容，在 constructor 中进行 state、props 的初始化，在这个阶段修改 state，不会执行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +21,7 @@ ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
 
     
 
-    <title>js排序的几种方法 | 阿龙</title>
+    <title>React声明周期 | 阿龙</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +311,12 @@ ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://img2.baidu.com/it/u=4167581070,3859984764&fm=253&fmt=auto&app=138&f=JPEG?w=752&h=500')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://img1.baidu.com/it/u=2310170655,486191485&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">js排序的几种方法</h1>
+                    <h1 class="description center-align post-title">React声明周期</h1>
                 </div>
             </div>
         </div>
@@ -444,8 +440,8 @@ ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/javascript/" class="post-category">
-                                javascript
+                            <a href="/categories/React/" class="post-category">
+                                React
                             </a>
                         
                     </div>
@@ -457,7 +453,7 @@ ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-03-28
+                    2020-03-09
                 </div>
                 
 
@@ -481,96 +477,65 @@ ar2.sort()    &amp;#x2F;&amp;#x2F;这个方法值只能">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>–</p>
-<h3 id="js排序的几种方法"><a href="#js排序的几种方法" class="headerlink" title="js排序的几种方法"></a>js排序的几种方法</h3><ol>
-<li><p><strong>sort（）排序</strong></p>
-<pre class="language-none"><code class="language-none">var ar1&#x3D;[2,4,6,8,1,3]
-var ar2&#x3D;[2,16,36,8,56]
-ar1.sort()
-ar2.sort()    &#x2F;&#x2F;这个方法值只能排序第一位数  也可以字符串进行排序
-console.log(ar1)    &#x2F;&#x2F;[1,2,3,4,6,8]
-console.log(ar2)    &#x2F;&#x2F;[16, 2, 36, 56, 8]
-
-ar2.sort(function(a,b)&#123;
-    return a-b      &#x2F;&#x2F;a-b为升序
-    &#x2F;&#x2F;return b-a    &#x2F;&#x2F;b-a为降序
-&#125;)
-console.log(ar2)&#x2F;&#x2F;[2, 8, 16, 36, 56]</code></pre>
-
+                <h2 id="react-旧版生命周期"><a href="#react-旧版生命周期" class="headerlink" title="react 旧版生命周期"></a>react 旧版生命周期</h2><p><img src="http://api.fly63.com/vue_blog/public/Uploads/20200225/5e54fb11b1f7b.jpg"></p>
+<p><strong>主要可分为 初始化阶段、挂载阶段、更新阶段、卸载阶段。</strong></p>
+<h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><p>发生在 constructor 中的内容，在 constructor 中进行 state、props 的初始化，<br>在这个阶段修改 state，不会执行更新阶段的生命周期，可以直接对 state 赋值。</p>
+<h3 id="挂载阶段"><a href="#挂载阶段" class="headerlink" title="挂载阶段"></a>挂载阶段</h3><ul>
+<li>对应的生命周期为：<ul>
+<li>componentWillMount<ul>
+<li>发生在 render 函数之前，还没有挂载 Dom</li>
+</ul>
 </li>
-<li><p><strong>reverse()方法</strong></p>
-<pre class="language-none"><code class="language-none">var ar1&#x3D;[2,4,6,8,1,3]
-ar1.reverse()       &#x2F;&#x2F;此方法为倒序，也就是反过来。并不会进行大小排序
-console.log(ar1)    &#x2F;&#x2F;[3, 1, 8, 6, 4, 2]</code></pre>
-
+<li>render</li>
+<li>componentDidMount<ul>
+<li>发生在 render 函数之后，已经挂载 Dom</li>
+</ul>
 </li>
-<li><p><strong>冒泡排序</strong></p>
-<pre class="language-none"><code class="language-none">&#x2F;每轮依次比较相邻两个数的大小，后面比前面小则交换
-
-var b&#x3D;0&#x2F;&#x2F;设置用来调换位置的值
-
-var a&#x3D;[1,9,33,2,5,34,23,98,14]  &#x2F;&#x2F;冒泡排序
-for(var i&#x3D;0;i&lt;a.length;i++)&#123;
-    for(var j&#x3D;0;j&lt;a.length;j++)&#123;
-        if(a[j]&gt;a[j+1])&#123;
-            b&#x3D;a[j]
-            a[j]&#x3D;a[j+1]
-            a[j+1]&#x3D;b
-        &#125;
-    &#125;
-&#125;
-console.log(a)&#x2F;&#x2F;[1, 2, 5, 9, 14, 23, 33, 34, 98]</code></pre>
+</ul>
 </li>
-<li><p><strong>选择排序</strong></p>
-<pre class="language-none"><code class="language-none">通过比较首先选出最小的数放在第一个位置上，然后在其余的数中选出次小数放在第二个位置上,依此类推,直到所有的数成为有序序列。
+</ul>
+<h3 id="更新阶段"><a href="#更新阶段" class="headerlink" title="更新阶段"></a>更新阶段</h3><p><strong>更新阶段分为由 state 更新引起和 props 更新引起</strong></p>
+<pre class="language-none"><code class="language-none">* props
+    * 1. componentWillReceiveProps(nextProps,nextState)
+        这个生命周期主要为我们提供对 props 发生改变的监听，如果你需要在 props 发生改变后，相应改变组件的一些 state。在这个方法中改变 state 不会二次渲染，而是直接合并 state。
+    * 2. shouldComponentUpdate(nextProps,nextState)
+        这个生命周期需要返回一个 Boolean 类型的值，判断是否需要更新渲染组件，优化 react 应用的主要手段之一，当返回 false 就不会再向下执行生命周期了，在这个阶段不可以 setState()，会导致循环调用。
+    * 3. componentWillUpdate(nextProps,nextState)
+        这个生命周期主要是给我们一个时机能够处理一些在 Dom 发生更新之前的事情，如获得 Dom 更新前某些元素的坐标、大小等，在这个阶段不可以 setState()，会导致循环调用。
+    **一直到这里 this.props 和 this.state 都还未发生更新**
+    * 4. render
+        执行 render 函数。
+    * 5. componentDidUpdate(prevProps, prevState) 
+        在此时已经完成渲染，Dom 已经发生变化，State 已经发生更新，prevProps、prevState 均为上一个状态的值。
+* state（具体同上）
+    * 1. shouldComponentUpdate
+    * 2. componentWillUpdate
+    * 3. render
+    * 4. componentDidUpdate</code></pre>
 
-var arr &#x3D; [9, 8, 7, 6, 5, 4];
-&#x2F;&#x2F;用选择排序的方法从小到大排列数组元素。
 
-&#x2F;&#x2F;比较的轮数
-for(var i &#x3D; 0; i &lt; arr.length - 1; i++)&#123;
-&#x2F;&#x2F;每轮比较的次数
-　　for(var j &#x3D; i + 1; j &lt; arr.length; j++)&#123;
-　　　　if(arr[i] &gt; arr[j])&#123;
-　　　　　　var tmp &#x3D; arr[i];
-　　　　　　arr[i] &#x3D; arr[j];
-　　　　　　arr[j] &#x3D; tmp;
-　　　　&#125;
-　　&#125;
-&#125;
-alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
+<h3 id="卸载阶段"><a href="#卸载阶段" class="headerlink" title="卸载阶段"></a>卸载阶段</h3><ul>
+<li>componentWillUnmount<ul>
+<li>componentWillUnmount 会在组件卸载及销毁之前直接调用。在此方法中执行必要的清理操作，例如，清除 timer，取消网络请求或清除在 componentDidMount  中创建的订阅等。componentWillUnmount 中不应调用 setState，因为该组件将永远不会重新渲染。组件实例卸载后，将永远不会再挂载它。</li>
+</ul>
 </li>
-<li><p><strong>快速排序</strong><br>先从数列中取出一个数作为基准数<br>分区过程，将比这个数大的数全放到它的右边，小于或等于它的数全放到它的左边<br>再对左右区间重复第二步，直到各区间只有一个数</p>
-<pre class="language-none"><code class="language-none">function quickSort(arr, i, j) &#123;
-  if(i &lt; j) &#123;
-    let left &#x3D; i;
-    let right &#x3D; j;
-    let mid &#x3D; Math.floor((left+right)&#x2F;2);
-    let temp &#x3D; arr[left];
-    arr[left] &#x3D; arr[mid];
-    arr[mid] &#x3D; temp;
-    let pivot &#x3D; arr[left];
-    while(i &lt; j) &#123;
-      while(arr[j] &gt;&#x3D; pivot &amp;&amp; i &lt; j) &#123;  &#x2F;&#x2F; 从后往前找比基准小的数
-        j--;
-      &#125;
-      if(i &lt; j) &#123;
-        arr[i++] &#x3D; arr[j];
-      &#125;
-      while(arr[i] &lt;&#x3D; pivot &amp;&amp; i &lt; j) &#123;  &#x2F;&#x2F; 从前往后找比基准大的数
-        i++;
-      &#125;
-      if(i &lt; j) &#123;
-        arr[j--] &#x3D; arr[i];
-      &#125;
-    &#125;
-    arr[i] &#x3D; pivot;
-    quickSort(arr, left, i-1);
-    quickSort(arr, i+1, right);
-    return arr;
-  &#125;
-&#125;</code></pre></li>
-</ol>
+</ul>
+<h2 id="React-新版生命周期"><a href="#React-新版生命周期" class="headerlink" title="React 新版生命周期"></a>React 新版生命周期</h2><p><strong>React 16 中删除了如下三个生命周期。</strong></p>
+<ul>
+<li><p>componentWillMount</p>
+</li>
+<li><p>componentWillReceiveProps</p>
+</li>
+<li><p>componentWillUpdate</p>
+</li>
+</ul>
+<p>官方给出的解释是 react 打算在17版本推出新的 Async Rendering，提出一种可被打断的生命周期，而可以被打断的阶段正是实际 dom 挂载之前的虚拟 dom 构建阶段，也就是要被去掉的三个生命周期。<br>本身这三个生命周期所表达的含义是没有问题的，但 react 官方认为我们（开发者）也许在这三个函数中编写了有副作用的代码，所以要替换掉这三个生命周期，因为这三个生命周期可能在一次 render 中被反复调用多次</p>
+<p><strong>取代这三个生命周期的是两个新生命周期</strong><br>static getDerivedStateFromProps(nextProps,nextState)<br>在 React 16.3.0 版本中：在组件实例化、接收到新的 props 时会被调用<br>在 React 16.4.0 版本中：在组件实例化、接收到新的 props 、组件状态更新时会被调用</p>
+<pre class="language-none"><code class="language-none">方法可以返回一个对象，将会和 state 发生合并，且不会触发 re-render。
+这个生命周期主要为我们提供了一个可以在组件实例化或 props、state 发生变化后根据 props 修改 state 的一个时机，用来替代旧的生命周期中的 componentWillMount、ComponentWillReceiveProps。因为是一个静态方法，this 指向不是组件实例。</code></pre>
+
+<p>getSnapshotBeforeUpdate（prevProps,prevState）</p>
+<p>在 render 函数调用之后，实际的 Dom 渲染之前，在这个阶段我们可以拿到上一个状态 Dom 元素的坐标、大小的等相关信息。用于替代旧的生命周期中的 componentWillUpdate。<br>该函数的返回值将会作为 componentDidUpdate 的第三个参数出现</p>
 
                 
             </div>
@@ -597,7 +562,7 @@ alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2020/03/28/javascript/js%E6%8E%92%E5%BA%8F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/">http://example.com/2020/03/28/javascript/js%E6%8E%92%E5%BA%8F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/</a>
+                    <a href="http://example.com/2020/03/09/React/React%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F/">http://example.com/2020/03/09/React/React%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -810,12 +775,12 @@ alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/04/03/React/redux%E5%8E%9F%E7%90%86/">
+                <a href="/2020/03/28/javascript/js%E6%8E%92%E5%BA%8F%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/">
                     <div class="card-image">
                         
-                        <img src="https://img2.baidu.com/it/u=2294778957,1427498571&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281" class="responsive-img" alt="redux原理">
+                        <img src="https://img2.baidu.com/it/u=4167581070,3859984764&fm=253&fmt=auto&app=138&f=JPEG?w=752&h=500" class="responsive-img" alt="js排序的几种方法">
                         
-                        <span class="card-title">redux原理</span>
+                        <span class="card-title">js排序的几种方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -826,14 +791,14 @@ alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-04-03
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-03-28
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/React/" class="post-category">
-                                    React
+                            <a href="/categories/javascript/" class="post-category">
+                                    javascript
                                 </a>
                             
                             
@@ -850,12 +815,12 @@ alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/03/09/React/React%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F/">
+                <a href="/2020/02/05/javascript/This%E6%8C%87%E5%90%91%E9%97%AE%E9%A2%98/">
                     <div class="card-image">
                         
-                        <img src="https://img1.baidu.com/it/u=2310170655,486191485&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281" class="responsive-img" alt="React声明周期">
+                        <img src="https://img1.baidu.com/it/u=916769571,589289318&fm=253&fmt=auto&app=138&f=JPEG?w=755&h=500" class="responsive-img" alt="This指向问题">
                         
-                        <span class="card-title">React声明周期</span>
+                        <span class="card-title">This指向问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -866,14 +831,14 @@ alert(arr);&#x2F;&#x2F;4,5,6,7,8,9</code></pre>
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-05
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/React/" class="post-category">
-                                    React
+                            <a href="/categories/javascript/" class="post-category">
+                                    javascript
                                 </a>
                             
                             
