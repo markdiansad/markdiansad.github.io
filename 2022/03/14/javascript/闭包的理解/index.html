@@ -488,7 +488,7 @@
 <li>可以让局部变量常驻在内存中</li>
 <li>会造成内存泄露(有一个内存空间长期被占用，而不被释放)</li>
 </ul>
-<h3 id="闭包示例"><a href="#闭包示例" class="headerlink" title="闭包示例"></a>闭包示例</h3><pre class="language-none"><code class="language-none"> function fn1()&#123;
+<h3 id="闭包示例"><a href="#闭包示例" class="headerlink" title="闭包示例"></a>闭包示例</h3><pre class="line-numbers language-none"><code class="language-none"> function fn1()&#123;
             var max &#x3D; 10;
             return function (x) &#123;
                 if(x &gt; max)&#123;
@@ -497,7 +497,7 @@
             &#125;
         &#125;
 var fn2 &#x3D; fn1();
-fn2(20);</code></pre>
+fn2(20);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>

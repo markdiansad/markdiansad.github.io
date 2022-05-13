@@ -479,7 +479,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h2 id="防抖与节流"><a href="#防抖与节流" class="headerlink" title="防抖与节流"></a>防抖与节流</h2><h3 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h3><p><strong>在事件被触发的n秒后再执行回调,如果这n秒又被触发，则重新计时.高频操作下，只执行最后一次.</strong></p>
-<pre class="language-none"><code class="language-none">&lt;script&gt;
+<pre class="line-numbers language-none"><code class="language-none">&lt;script&gt;
     &#x2F;&#x2F; 防抖  用户触发事件过于频繁
     let inp &#x3D; document.getElementsByTagName(&#39;input&#39;)
     inp[0].oninput &#x3D; deco(function () &#123;
@@ -497,10 +497,10 @@
             &#125;, time)
         &#125;
     &#125;
-&lt;&#x2F;script&gt;</code></pre>
+&lt;&#x2F;script&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h3><p><strong>一定时间内 控制触发的次数</strong></p>
-<pre class="language-none"><code class="language-none">&lt;script&gt;
+<pre class="line-numbers language-none"><code class="language-none">&lt;script&gt;
   window.onscroll &#x3D; fn(function () &#123;
         console.log(1111111)
     &#125;, 500)
@@ -518,7 +518,7 @@
         &#125;
     &#125;
 &lt;&#x2F;script&gt;
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
                 

@@ -479,12 +479,12 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
             <div id="articleContent">
                 <p>–</p>
 <h1 id="webpack5概念"><a href="#webpack5概念" class="headerlink" title="webpack5概念"></a>webpack5概念</h1><h2 id="1-谈谈你对Webpack的理解？"><a href="#1-谈谈你对Webpack的理解？" class="headerlink" title="1.谈谈你对Webpack的理解？"></a>1.谈谈你对Webpack的理解？</h2><p>是一个模块化打包工具，将不同的资源和文件，进行打包，合并在一个文件里。</p>
-<pre class="language-none"><code class="language-none">1、依赖管理：方便引用第三方模块，让模块更容易复用、避免全局注入导致的冲突、、避免重复加载或者加载不必要的模块
+<pre class="line-numbers language-none"><code class="language-none">1、依赖管理：方便引用第三方模块，让模块更容易复用、避免全局注入导致的冲突、、避免重复加载或者加载不必要的模块
 2、合并代码：把各个分散的模块集中打包成大文件，减少HTTP的链接的请求次数，配合uglify.js可以减少、优化代码的体积
 3、各种插件：babel把ES6+转[webpack5整理]()化为ES5-，eslint可以检查编译时的各种错误
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="2-webpack的工作原理"><a href="#2-webpack的工作原理" class="headerlink" title="2.webpack的工作原理?"></a>2.webpack的工作原理?</h2><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><pre class="language-none"><code class="language-none">1. Entry:入口指示webpack以哪个文件为入口起点开始打包，分析构建内部依赖图
+<h2 id="2-webpack的工作原理"><a href="#2-webpack的工作原理" class="headerlink" title="2.webpack的工作原理?"></a>2.webpack的工作原理?</h2><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><pre class="line-numbers language-none"><code class="language-none">1. Entry:入口指示webpack以哪个文件为入口起点开始打包，分析构建内部依赖图
 
 2. output:输出指示webpack的打包后的资源bundles输出到哪里去，以及如何命名
 
@@ -492,8 +492,8 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
 
 4. plugin:插件可以用于执行范围更广的任务。插件的范围包括，从打包优化和压缩，一直到重新定义环境中的变量等
 
-5. mode:模式指示webpack使用相应模式的配置</code></pre>
-<h4 id="流程概括"><a href="#流程概括" class="headerlink" title="流程概括"></a>流程概括</h4><pre class="language-none"><code class="language-none">webpack的运行流程是一个串行的过程，从启动到结束会依次执行以下流程：
+5. mode:模式指示webpack使用相应模式的配置<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="流程概括"><a href="#流程概括" class="headerlink" title="流程概括"></a>流程概括</h4><pre class="line-numbers language-none"><code class="language-none">webpack的运行流程是一个串行的过程，从启动到结束会依次执行以下流程：
 
 1. 初始化参数：从配置文件和Shell语句中读取与合并参数，得出最终的参数；
 
@@ -508,7 +508,7 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
 6. 输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的Chunk，再把每个Chunk转换成一个单独的文件加入到输出列表，这步是可以修改输出内容的最后机会；
 
 7. 输出完成： 在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。
-在以上过程中，webpack会在特定的时间点广播出特定的时间，插件在监听到感兴趣的时间后会执行特定的逻辑，并且插件可以调用Webpack提供的API改变Webpack的运行结果。</code></pre>
+在以上过程中，webpack会在特定的时间点广播出特定的时间，插件在监听到感兴趣的时间后会执行特定的逻辑，并且插件可以调用Webpack提供的API改变Webpack的运行结果。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="流程细节"><a href="#流程细节" class="headerlink" title="流程细节"></a>流程细节</h4><ul>
 <li>Webpack的构建流程可以分为以下三个阶段：<ul>
 <li><ol>
@@ -526,7 +526,7 @@ webpack5概念1.谈谈你对Webpack的理解？是一个模块化打包工具，
 </ul>
 </li>
 </ul>
-<h2 id="3-webpack4和webpack5的区别？"><a href="#3-webpack4和webpack5的区别？" class="headerlink" title="3.webpack4和webpack5的区别？"></a>3.webpack4和webpack5的区别？</h2><pre class="language-none"><code class="language-none">更快的构建速度
+<h2 id="3-webpack4和webpack5的区别？"><a href="#3-webpack4和webpack5的区别？" class="headerlink" title="3.webpack4和webpack5的区别？"></a>3.webpack4和webpack5的区别？</h2><pre class="line-numbers language-none"><code class="language-none">更快的构建速度
 
 更高的版本要求
 
@@ -560,7 +560,7 @@ webpack5 启动服务
 
 输出代码的区别
 ● webpack4只能输出es5的代码
-● webpack5新增属性output.ecmaVersion，可以生成ES5和ES6的代码</code></pre>
+● webpack5新增属性output.ecmaVersion，可以生成ES5和ES6的代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="4-前端代码为何要进行构建和打包？"><a href="#4-前端代码为何要进行构建和打包？" class="headerlink" title="4. 前端代码为何要进行构建和打包？"></a>4. 前端代码为何要进行构建和打包？</h2><ul>
 <li><p>代码方面体积更小，加载更快（tree-shaking，压缩合并）</p>
@@ -593,11 +593,11 @@ webpack5 启动服务
 </ul>
 </li>
 </ol>
-<h2 id="6-什么是bundle，什么是chunk，什么是module"><a href="#6-什么是bundle，什么是chunk，什么是module" class="headerlink" title="6. 什么是bundle，什么是chunk，什么是module"></a>6. 什么是bundle，什么是chunk，什么是module</h2><pre class="language-none"><code class="language-none">bundle： 是由webpack打包出来的文件
+<h2 id="6-什么是bundle，什么是chunk，什么是module"><a href="#6-什么是bundle，什么是chunk，什么是module" class="headerlink" title="6. 什么是bundle，什么是chunk，什么是module"></a>6. 什么是bundle，什么是chunk，什么是module</h2><pre class="line-numbers language-none"><code class="language-none">bundle： 是由webpack打包出来的文件
 
 chunk： 是指webpack在进行模块依赖分析的时候，代码分割出来的代码块
 
-module： 是开发中的单个模块</code></pre>
+module： 是开发中的单个模块<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 

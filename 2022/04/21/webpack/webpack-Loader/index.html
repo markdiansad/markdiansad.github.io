@@ -479,18 +479,18 @@ webpack默认只能打包j">
             <div id="articleContent">
                 <h1 id="webpack-Loader整理"><a href="#webpack-Loader整理" class="headerlink" title="webpack Loader整理"></a>webpack Loader整理</h1><h2 id="1-Loader机制的作用是什么？"><a href="#1-Loader机制的作用是什么？" class="headerlink" title="1. Loader机制的作用是什么？"></a>1. Loader机制的作用是什么？</h2><ul>
 <li>webpack 本身只能处理 JavaScript 和 JSON 文件，而 loader 为 webpack 添加了处理其他类型文件的能力。</li>
-<li>webpack默认只能打包js文件，配置里的module.rules数组配置了一组规则，告诉 Webpack 在遇到哪些文件时使用哪些 Loader 去加载和转换打包成js。<pre class="language-none"><code class="language-none">注意：use属性的值需要是一个由 Loader 名称组成的数组，Loader 的执行顺序是由后到前的；
+<li>webpack默认只能打包js文件，配置里的module.rules数组配置了一组规则，告诉 Webpack 在遇到哪些文件时使用哪些 Loader 去加载和转换打包成js。<pre class="line-numbers language-none"><code class="language-none">注意：use属性的值需要是一个由 Loader 名称组成的数组，Loader 的执行顺序是由后到前的；
 每一个 Loader 都可以通过 URL querystring 的方式传入参数，例如css-loader?minimize
-中的minimize告诉css-loader要开启 CSS 压缩。</code></pre></li>
+中的minimize告诉css-loader要开启 CSS 压缩。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ul>
-<h2 id="2-有哪些常见的Loader？他们是解决什么问题的？"><a href="#2-有哪些常见的Loader？他们是解决什么问题的？" class="headerlink" title="2. 有哪些常见的Loader？他们是解决什么问题的？"></a>2. 有哪些常见的Loader？他们是解决什么问题的？</h2><pre class="language-none"><code class="language-none">file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件
+<h2 id="2-有哪些常见的Loader？他们是解决什么问题的？"><a href="#2-有哪些常见的Loader？他们是解决什么问题的？" class="headerlink" title="2. 有哪些常见的Loader？他们是解决什么问题的？"></a>2. 有哪些常见的Loader？他们是解决什么问题的？</h2><pre class="line-numbers language-none"><code class="language-none">file-loader：把文件输出到一个文件夹中，在代码中通过相对 URL 去引用输出的文件
 url-loader：和 file-loader 类似，但是能在文件很小的情况下以 base64 的方式把文件内容注入到代码中去
 source-map-loader：加载额外的 Source Map 文件，以方便断点调试
 image-loader：加载并且压缩图片文件
 babel-loader：把 ES6 转换成 ES5
 css-loader：加载 CSS，支持模块化、压缩、文件导入等特性
 style-loader：把 CSS 代码注入到 JavaScript 中，通过 DOM 操作去加载 CSS。
-eslint-loader：通过 ESLint 检查 JavaScript 代码</code></pre>
+eslint-loader：通过 ESLint 检查 JavaScript 代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 

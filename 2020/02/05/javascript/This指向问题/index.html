@@ -478,7 +478,7 @@
             <div id="articleContent">
                 <p><strong>不同情况的调用，this指向分别如何。顺带可以提一下 es6 中箭头函数没有 this, arguments, super 等，这些只依赖包含箭头函数最接近的函数</strong></p>
 <h3 id="函数执行改变this"><a href="#函数执行改变this" class="headerlink" title="函数执行改变this"></a>函数执行改变this</h3><p>由于 JS 的设计原理: 在函数中，可以引用运行环境中的变量。因此就需要一个机制来让我们可以在函数体内部获取当前的运行环境，这便是this</p>
-<pre class="language-none"><code class="language-none">因此要明白 this 指向，其实就是要搞清楚 函数的运行环境，说人话就是，谁调用了函数。例如</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">因此要明白 this 指向，其实就是要搞清楚 函数的运行环境，说人话就是，谁调用了函数。例如<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
 <li>obj.fn()，便是 obj 调用了函数，既函数中的 this &#x3D;&#x3D;&#x3D; obj</li>
@@ -491,11 +491,11 @@
 </ul>
 <h3 id="apply-x2F-call-x2F-bind-原理"><a href="#apply-x2F-call-x2F-bind-原理" class="headerlink" title="apply&#x2F;call&#x2F;bind 原理"></a>apply&#x2F;call&#x2F;bind 原理</h3><p><img src="https://s.poetries.work/images/20210414155100.png"></p>
 <p>all、apply 和 bind 是挂在 Function 对象上的三个方法，调用这三个方法的必须是一个函数</p>
-<pre class="language-none"><code class="language-none">func.call(thisArg, param1, param2, ...)
+<pre class="line-numbers language-none"><code class="language-none">func.call(thisArg, param1, param2, ...)
 
 func.apply(thisArg, [param1,param2,...])
 
-func.bind(thisArg, param1, param2, ...)</code></pre>
+func.bind(thisArg, param1, param2, ...)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在浏览器里，在全局范围内this 指向window对象；<br>在函数中，this永远指向最后调用他的那个对象；<br>构造函数中，this指向new出来的那个新的对象；<br>apply、call、bind都是js给函数内置的一些API，调用他们可以为函数指定this的执行,同时也可以传参。</p>
 <p><img src="https://s.poetries.work/gitee/2020/09/6.png"></p>

@@ -477,7 +477,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="vue中-nextTick的作用与原理"><a href="#vue中-nextTick的作用与原理" class="headerlink" title="vue中$nextTick的作用与原理"></a>vue中$nextTick的作用与原理</h2><pre class="language-none"><code class="language-none">作用：是为了可以获取更新后的DOM。</code></pre>
+                <h2 id="vue中-nextTick的作用与原理"><a href="#vue中-nextTick的作用与原理" class="headerlink" title="vue中$nextTick的作用与原理"></a>vue中$nextTick的作用与原理</h2><pre class="line-numbers language-none"><code class="language-none">作用：是为了可以获取更新后的DOM。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>由于Vue DOM更新是异步执行的,即修改数据时，视图不会立即更新，而是会监听数据变化,并缓存<br>在同一事件循环中,等同一数据循环中,等统一数据循环中的所有数据变化完成之后,再统一进行视图更新.<br>为了确保得到更新后的DOM，所以设置了Vue.nextTick(),就是在下次DOM更新循环结束之后执行延迟回调.<br>在修改数据之后立即使用这个方法,获取更新后的DOM。</p>
 <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>在下次DOM更新循环结束之后执行延迟回调.nextTick主要使用了宏任务和微任务.根据执行环境分别尝试采用</p>

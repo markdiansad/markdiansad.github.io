@@ -496,7 +496,7 @@
 <p><strong>重绘和回流是渲染步骤中的一小节，但是这两个步骤对于性能影响很大</strong></p>
 <ul>
 <li>重绘是当节点需要更改外观而不会影响布局的，比如改变 color 就叫称为重绘</li>
-<li>回流是布局或者几何属性需要改变就称为回流。<pre class="language-none"><code class="language-none">回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变深层次的节点很可能导致父节点的一系列回流</code></pre></li>
+<li>回流是布局或者几何属性需要改变就称为回流。<pre class="line-numbers language-none"><code class="language-none">回流必定会发生重绘，重绘不一定会引发回流。回流所需的成本比重绘高的多，改变深层次的节点很可能导致父节点的一系列回流<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ul>
 <h3 id="以下几个动作可能会导致性能问题"><a href="#以下几个动作可能会导致性能问题" class="headerlink" title="以下几个动作可能会导致性能问题"></a>以下几个动作可能会导致性能问题</h3><ul>
 <li>改变 window 大小</li>

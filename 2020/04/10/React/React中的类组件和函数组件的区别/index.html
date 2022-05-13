@@ -494,18 +494,18 @@ React是">
 </ul>
 </li>
 </ul>
-<pre class="language-none"><code class="language-none">class Welcome extends React.Component &#123;
+<pre class="line-numbers language-none"><code class="language-none">class Welcome extends React.Component &#123;
         render() &#123;
                 return ( &lt; h1 &gt; Welcome &#123;
                     this.props.name
                 &#125; &lt; &#x2F;h1&gt;);&#125;&#125;ReactDOM.render(&lt;Welcomename&#x3D;&#39;react&#39;&#x2F; &gt; , document.getElementById(&#39;root&#39;));
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="函数组件（functional-component）"><a href="#函数组件（functional-component）" class="headerlink" title="函数组件（functional component）"></a>函数组件（functional component）</h3><p>函数组件接受一个单一的props对象并返回了一个React元素</p>
-<pre class="language-none"><code class="language-none">function Welcome(props) &#123;
+<pre class="line-numbers language-none"><code class="language-none">function Welcome(props) &#123;
     return &lt;h1 &gt; Welcome &#123;
         props.name
-    &#125; &lt; &#x2F;h1&gt;&#125;ReactDOM.render(&lt;Welcomename&#x3D;&#39;react&#39;&#x2F; &gt; , document.getElementById(&#39;root&#39;));</code></pre>
+    &#125; &lt; &#x2F;h1&gt;&#125;ReactDOM.render(&lt;Welcomename&#x3D;&#39;react&#39;&#x2F; &gt; , document.getElementById(&#39;root&#39;));<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><h3 id="语法上区别"><a href="#语法上区别" class="headerlink" title="语法上区别"></a>语法上区别</h3><p>两者最明显的不同就是在语法上，函数组件是一个纯函数，它接受一个props对象返回一个react元素。<br>而类组件需要继承React.Component并且创建render函数返回react元素,这将会要更多的代码，虽然它们实现的效果相同。</p>

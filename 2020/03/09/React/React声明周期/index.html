@@ -495,7 +495,7 @@
 </li>
 </ul>
 <h3 id="更新阶段"><a href="#更新阶段" class="headerlink" title="更新阶段"></a>更新阶段</h3><p><strong>更新阶段分为由 state 更新引起和 props 更新引起</strong></p>
-<pre class="language-none"><code class="language-none">* props
+<pre class="line-numbers language-none"><code class="language-none">* props
     * 1. componentWillReceiveProps(nextProps,nextState)
         这个生命周期主要为我们提供对 props 发生改变的监听，如果你需要在 props 发生改变后，相应改变组件的一些 state。在这个方法中改变 state 不会二次渲染，而是直接合并 state。
     * 2. shouldComponentUpdate(nextProps,nextState)
@@ -511,7 +511,7 @@
     * 1. shouldComponentUpdate
     * 2. componentWillUpdate
     * 3. render
-    * 4. componentDidUpdate</code></pre>
+    * 4. componentDidUpdate<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 <h3 id="卸载阶段"><a href="#卸载阶段" class="headerlink" title="卸载阶段"></a>卸载阶段</h3><ul>
@@ -531,8 +531,8 @@
 </ul>
 <p>官方给出的解释是 react 打算在17版本推出新的 Async Rendering，提出一种可被打断的生命周期，而可以被打断的阶段正是实际 dom 挂载之前的虚拟 dom 构建阶段，也就是要被去掉的三个生命周期。<br>本身这三个生命周期所表达的含义是没有问题的，但 react 官方认为我们（开发者）也许在这三个函数中编写了有副作用的代码，所以要替换掉这三个生命周期，因为这三个生命周期可能在一次 render 中被反复调用多次</p>
 <p><strong>取代这三个生命周期的是两个新生命周期</strong><br>static getDerivedStateFromProps(nextProps,nextState)<br>在 React 16.3.0 版本中：在组件实例化、接收到新的 props 时会被调用<br>在 React 16.4.0 版本中：在组件实例化、接收到新的 props 、组件状态更新时会被调用</p>
-<pre class="language-none"><code class="language-none">方法可以返回一个对象，将会和 state 发生合并，且不会触发 re-render。
-这个生命周期主要为我们提供了一个可以在组件实例化或 props、state 发生变化后根据 props 修改 state 的一个时机，用来替代旧的生命周期中的 componentWillMount、ComponentWillReceiveProps。因为是一个静态方法，this 指向不是组件实例。</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">方法可以返回一个对象，将会和 state 发生合并，且不会触发 re-render。
+这个生命周期主要为我们提供了一个可以在组件实例化或 props、state 发生变化后根据 props 修改 state 的一个时机，用来替代旧的生命周期中的 componentWillMount、ComponentWillReceiveProps。因为是一个静态方法，this 指向不是组件实例。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>getSnapshotBeforeUpdate（prevProps,prevState）</p>
 <p>在 render 函数调用之后，实际的 Dom 渲染之前，在这个阶段我们可以拿到上一个状态 Dom 元素的坐标、大小的等相关信息。用于替代旧的生命周期中的 componentWillUpdate。<br>该函数的返回值将会作为 componentDidUpdate 的第三个参数出现</p>

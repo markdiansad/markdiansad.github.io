@@ -578,8 +578,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="5、-npm打包时需要注意哪些？如何利用webpack来更好的构建？"><a href="#5、-npm打包时需要注意哪些？如何利用webpack来更好的构建？" class="headerlink" title="5、 npm打包时需要注意哪些？如何利用webpack来更好的构建？"></a>5、 npm打包时需要注意哪些？如何利用webpack来更好的构建？</h2><pre class="language-none"><code class="language-none">Npm是目前最大的 JavaScript 模块仓库，里面有来自全世界开发者上传的可复用模块。你可能只是JS模块的使用者，但是有些情况你也会去选择上传自己开发的模块。关于NPM模块上传的方法可以去官网上进行学习，这里只讲解如何利用webpack来构建。
-NPM模块需要注意以下问题：要支持CommonJS模块化规范，所以要求打包后的最后结果也遵守该规则。Npm模块使用者的环境是不确定的，很有可能并不支持ES6，所以打包的最后结果应该是采用ES5编写的。并且如果ES5是经过转换的，请最好连同SourceMap一同上传。Npm包大小应该是尽量小（有些仓库会限制包大小）发布的模块不能将依赖的模块也一同打包，应该让用户选择性的去自行安装。这样可以避免模块应用者再次打包时出现底层模块被重复打包的情况。UI组件类的模块应该将依赖的其它资源文件，例如.css文件也需要包含在发布的模块里。</code></pre>
+<h2 id="5、-npm打包时需要注意哪些？如何利用webpack来更好的构建？"><a href="#5、-npm打包时需要注意哪些？如何利用webpack来更好的构建？" class="headerlink" title="5、 npm打包时需要注意哪些？如何利用webpack来更好的构建？"></a>5、 npm打包时需要注意哪些？如何利用webpack来更好的构建？</h2><pre class="line-numbers language-none"><code class="language-none">Npm是目前最大的 JavaScript 模块仓库，里面有来自全世界开发者上传的可复用模块。你可能只是JS模块的使用者，但是有些情况你也会去选择上传自己开发的模块。关于NPM模块上传的方法可以去官网上进行学习，这里只讲解如何利用webpack来构建。
+NPM模块需要注意以下问题：要支持CommonJS模块化规范，所以要求打包后的最后结果也遵守该规则。Npm模块使用者的环境是不确定的，很有可能并不支持ES6，所以打包的最后结果应该是采用ES5编写的。并且如果ES5是经过转换的，请最好连同SourceMap一同上传。Npm包大小应该是尽量小（有些仓库会限制包大小）发布的模块不能将依赖的模块也一同打包，应该让用户选择性的去自行安装。这样可以避免模块应用者再次打包时出现底层模块被重复打包的情况。UI组件类的模块应该将依赖的其它资源文件，例如.css文件也需要包含在发布的模块里。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 <h2 id="6、-什么是长缓存？在webpack中如何做到长缓存优化？"><a href="#6、-什么是长缓存？在webpack中如何做到长缓存优化？" class="headerlink" title="6、 什么是长缓存？在webpack中如何做到长缓存优化？"></a>6、 什么是长缓存？在webpack中如何做到长缓存优化？</h2><ul>
@@ -648,13 +648,13 @@ NPM模块需要注意以下问题：要支持CommonJS模块化规范，所以要
 <li>使用符合ECMAScript 提案的import()语法</li>
 <li>使用 webpack 特定的require.ensure</li>
 </ul>
-<h2 id="10、-预获取-x2F-预加载模块"><a href="#10、-预获取-x2F-预加载模块" class="headerlink" title="10、 预获取&#x2F;预加载模块"></a>10、 预获取&#x2F;预加载模块</h2><pre class="language-none"><code class="language-none">Webpack v4.6.0+ 增加了对预获取和预加载的支持。
+<h2 id="10、-预获取-x2F-预加载模块"><a href="#10、-预获取-x2F-预加载模块" class="headerlink" title="10、 预获取&#x2F;预加载模块"></a>10、 预获取&#x2F;预加载模块</h2><pre class="line-numbers language-none"><code class="language-none">Webpack v4.6.0+ 增加了对预获取和预加载的支持。
 在声明 import 时，使用下面这些内置指令，可以让 webpack 输出 &quot;resource hint(资源提示)&quot;，来告知浏览器
 ●  prefetch(预获取)：将来某些导航下可能需要的资源
 ● preload(预加载)：当前导航下可能需要资源
 添加第二句魔法注释： webpackPrefetch: true
 告诉 webpack 执行预获取。这会生成 &lt;link rel&#x3D;&quot;prefetch&quot; href&#x3D;&quot;math.js&quot;&gt;
-       并追加到页面头部，指示着浏览器在闲置时间预取 math.js 文件。</code></pre>
+       并追加到页面头部，指示着浏览器在闲置时间预取 math.js 文件。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="12-什么是Tree-sharking"><a href="#12-什么是Tree-sharking" class="headerlink" title="12.  什么是Tree-sharking?"></a>12.  什么是Tree-sharking?</h2><ul>
 <li>Tree是树，sharking是摇晃的意思。那么树摇晃的时候，肯定会’摇’下来一些无用的叶子。从编程的角度思考，如果假设我们的代码是一棵树（Tree），那么摇下来的无用的的叶子是什么呢？当然是无用的代码啦，他有个专业的术语，叫做dead-code（死码）</li>

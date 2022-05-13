@@ -496,12 +496,12 @@
 </ul>
 <h3 id="如何在Redux中定义Action？"><a href="#如何在Redux中定义Action？" class="headerlink" title="如何在Redux中定义Action？"></a>如何在Redux中定义Action？</h3><p>react中的Action必须具有type属性，该属性指示正在执行的ACTION的类型。必须将他们定义为字符串常量，并且<br>还可以向其添加更多的属性。</p>
 <p>redux中，Action被名为Action Creators的函数所创建,以下是Action和Action Creator的示例：</p>
-<pre class="language-none"><code class="language-none">function addTodo（text）&#123;
+<pre class="line-numbers language-none"><code class="language-none">function addTodo（text）&#123;
     return &#123;
     type:ADD_TODO,
     text
         &#125;
-    &#125;</code></pre>
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 
 <p>解释Reducer的作用<br>Reducers是纯函数,它规定应用程序的状态怎样因响应ACTION而改变。reducers通过接受先前的状态和action来工作,<br>然后它返回一个新的状态。它根据操作的类型确定需要执行哪种更新，然后返回新的值，如果不需要完成任务，它会返回原来的状态。</p>

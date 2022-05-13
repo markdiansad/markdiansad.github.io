@@ -485,10 +485,10 @@
 </ol>
 <p>私有缓存（一般为本地浏览器缓存）<br>代理缓存</p>
 <ol start="3">
-<li>然后谈谈本地缓存<pre class="language-none"><code class="language-none">本地缓存是指浏览器请求资源时命中了浏览器本地的缓存资源，浏览器并不会发送真正的请求给服务器了。</code></pre>
+<li>然后谈谈本地缓存<pre class="line-numbers language-none"><code class="language-none">本地缓存是指浏览器请求资源时命中了浏览器本地的缓存资源，浏览器并不会发送真正的请求给服务器了。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 第一次浏览器发送请求给服务器时，此时浏览器还没有本地缓存副本，服务器返回资源给浏览器，响应码是200 OK，浏览器收到资源后，把资源和对应的响应头一起缓存下来<br>第二次浏览器准备发送请求给服务器时候，浏览器会先检查上一次服务端返回的响应头信息中的Cache-Control，它的值是一个相对值，单位为秒，表示资源在客户端缓存的最大有效期，过期时间为第一次请求的时间减去Cache-Control的值，过期时间跟当前的请求时间比较，如果本地缓存资源没过期，那么命中缓存，不再请求服务器<br>如果没有命中，浏览器就会把请求发送给服务器，进入缓存协商阶段。</li>
 </ol>
-<pre class="language-none"><code class="language-none">与本地缓存相关的头有：Cache-Control、Expires，Cache-Control有多个可选值代表不同的意义，而Expires就是一个日期格式的绝对值</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">与本地缓存相关的头有：Cache-Control、Expires，Cache-Control有多个可选值代表不同的意义，而Expires就是一个日期格式的绝对值<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
@@ -500,18 +500,18 @@
 <li>Push Cache</li>
 </ul>
 <p><strong>Service Worker</strong></p>
-<pre class="language-none"><code class="language-none">这个应用场景比如PWA，它借鉴了Web Worker思路，由于它脱离了浏览器的窗体，因此无法直接访问DOM。
-它能完成的功能比如：离线缓存、消息推送和网络代理，其中离线缓存就是Service Worker Cache。</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">这个应用场景比如PWA，它借鉴了Web Worker思路，由于它脱离了浏览器的窗体，因此无法直接访问DOM。
+它能完成的功能比如：离线缓存、消息推送和网络代理，其中离线缓存就是Service Worker Cache。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 
 <p><strong>Memory Cache</strong></p>
-<pre class="language-none"><code class="language-none">指的是内存缓存，从效率上讲它是最快的，从存活时间来讲又是最短的，当渲染进程结束后，内存缓存也就不存在了。</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">指的是内存缓存，从效率上讲它是最快的，从存活时间来讲又是最短的，当渲染进程结束后，内存缓存也就不存在了。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><strong>Disk Cache</strong></p>
-<pre class="language-none"><code class="language-none">存储在磁盘中的缓存，从存取效率上讲是比内存缓存慢的，优势在于存储容量和存储时长。</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">存储在磁盘中的缓存，从存取效率上讲是比内存缓存慢的，优势在于存储容量和存储时长。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p><strong>Push Cache</strong></p>
-<pre class="language-none"><code class="language-none">推送缓存，这算是浏览器中最后一道防线吧，它是HTTP&#x2F;2的内容</code></pre>
+<pre class="line-numbers language-none"><code class="language-none">推送缓存，这算是浏览器中最后一道防线吧，它是HTTP&#x2F;2的内容<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
                 
             </div>
