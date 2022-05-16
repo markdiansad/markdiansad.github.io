@@ -289,6 +289,25 @@
     
     
     <entry>
+      <title>computed-的实现原理</title>
+      <link href="/2022/01/12/Vue/computed-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+      <url>/2022/01/12/Vue/computed-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<pre class="line-numbers language-none"><code class="language-none">computed 本质是一个惰性求值的观察者computed watcher。其内部通过 this.dirty 属性标记计算属性是否需要重新求值。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ul><li><p>当 computed 的依赖状态发生改变时,就会通知这个惰性的 watcher,computed watcher 通过 this.dep.subs.length 判断有没有订阅者,</p></li><li><p>有的话,会重新计算,然后对比新旧值,如果变化了,会重新渲染。 (Vue 想确保不仅仅是计算属性依赖的值发生变化，而是当计算属性最终计算的值发生变化时才会触发渲染 watcher 重新渲染，本质上是一种优化。)</p></li><li><p>没有的话,仅仅把 this.dirty &#x3D; true (当计算属性依赖于其他数据时，属性并不会立即重新计算，只有之后其他地方需要读取属性的时候，它才会真正计算，即具备 lazy（懒计算）特性。)</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>js类型检测</title>
       <link href="/2021/12/05/javascript/js%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B/"/>
       <url>/2021/12/05/javascript/js%E7%B1%BB%E5%9E%8B%E6%A3%80%E6%B5%8B/</url>
@@ -327,6 +346,44 @@
     
     
     <entry>
+      <title>Vue-渲染过程</title>
+      <link href="/2021/11/12/Vue/Vue-%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/"/>
+      <url>/2021/11/12/Vue/Vue-%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://s.poetries.work/images/20210504211204.png"></p><ul><li><p>调用 <strong>compile</strong> 函数,生成 render 函数字符串 ,编译过程如下</p><ul><li><p>parse 使用大量的正则表达式对template字符串进行解析，将标签、指令、属性等转化为抽象语法树AST。模板 -&gt; AST （最消耗性能）</p></li><li><p>optimize 遍历AST，找到其中的一些静态节点并进行标记，方便在页面重渲染的时候进行diff比较时，直接跳过这一些静态节点，优化runtime的性能</p></li><li><p>generate 将最终的AST转化为render函数字符串</p></li></ul></li><li><p>调用 new Watcher 函数,监听数据的变化,当数据发生变化时，Render 函数执行生成 vnode 对象</p></li><li><p>调用 patch 方法,对比新旧 vnode 对象,通过 DOM diff 算法,添加、修改、删除真正的 DOM 元素</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue3.0-Compositon_api</title>
+      <link href="/2021/08/12/Vue/Vue3-0-Compositon-api/"/>
+      <url>/2021/08/12/Vue/Vue3-0-Compositon-api/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Compositon-api"><a href="#Compositon-api" class="headerlink" title="Compositon api"></a>Compositon api</h2><p><strong>Composition  API</strong>也叫组合式API，是Vue3.x的新特性。</p><pre class="line-numbers language-none"><code class="language-none">通过创建 Vue 组件，我们可以将接口的可重复部分及其功能提取到可重用的代码段中。仅此一项就可以使我们的应用程序在可维护性和灵活性方面走得更远。然而，我们的经验已经证明，光靠这一点可能是不够的，尤其是当你的应用程序变得非常大的时候——想想几百个组件。在处理如此大的应用程序时，共享和重用代码变得尤为重要<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><ul><li>Vue2.0中，随着功能的增加，组件变得越来越复杂，越来越难维护，而难以维护的根本原因是Vue的API设计迫使开发者使用watch，computed，methods选项组织代码，而不是实际的业务逻辑。</li><li>另外Vue2.0缺少一种较为简洁的低成本的机制来完成逻辑复用，虽然可以minxis完成逻辑复用，但是当mixin变多的时候，会使得难以找到对应的data、computed或者method来源于哪个mixin，使得类型推断难以进行。</li><li>所以Composition API的出现，主要是也是为了解决Option API带来的问题，第一个是代码组织问题，Compostion API可以让开发者根据业务逻辑组织自己的代码，让代码具备更好的可读性和可扩展性，也就是说当下一个开发者接触这一段不是他自己写的代码时，他可以更好的利用代码的组织反推出实际的业务逻辑，或者根据业务逻辑更好的理解代码。</li><li>第二个是实现代码的逻辑提取与复用，当然mixin也可以实现逻辑提取与复用，但是像前面所说的，多个mixin作用在同一个组件时，很难看出property是来源于哪个mixin，来源不清楚，另外，多个mixin的property存在变量命名冲突的风险。而Composition API刚好解决了这两个问题。</li></ul><p><strong>通俗的讲：</strong></p><p>没有Composition API之前vue相关业务的代码需要配置到option的特定的区域，中小型项目是没有问题的，但是在大型项目中会导致后期的维护性比较复杂，同时代码可复用性不高。Vue3.x中的composition-api就是为了解决这个问题而生的</p><p><strong>compositon api提供了以下几个函数：</strong></p><ul><li>setup</li><li>ref</li><li>reactive</li><li>watchEffect</li><li>watch</li><li>computed</li><li>toRefs</li><li>生命周期的hooks</li></ul><p><strong>都说Composition API与React Hook很像，说说区别</strong></p><pre class="line-numbers language-none"><code class="language-none">从React Hook的实现角度看，React Hook是根据useState调用的顺序来确定下一次重渲染时的state是来源于哪个useState，所以出现了以下限制<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ul><li>不能在循环、条件、嵌套函数中调用Hook</li><li>必须确保总是在你的React函数的顶层调用Hook</li><li>useEffect、useMemo等函数必须手动确定依赖关系</li></ul><pre class="line-numbers language-none"><code class="language-none">而Composition API是基于Vue的响应式系统实现的，与React Hook的相比<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ul><li>声明在setup函数内，一次组件实例化只调用一次setup，而React Hook每次重渲染都需要调用Hook，使得React的GC比Vue更有压力，性能也相对于Vue来说也较慢</li><li>Compositon API的调用不需要顾虑调用顺序，也可以在循环、条件、嵌套函数中使用</li><li>响应式系统自动实现了依赖收集，进而组件的部分的性能优化由Vue内部自己完成，而React Hook需要手动传入依赖，而且必须必须保证依赖的顺序，让useEffect、useMemo等函数正确的捕获依赖变量，否则会由于依赖不正确使得组件性能下降。</li></ul><pre class="line-numbers language-none"><code class="language-none">虽然Compositon API看起来比React Hook好用，但是其设计思想也是借鉴React Hook的。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>浏览器如何渲染网页?</title>
       <link href="/2021/08/06/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E7%BD%91%E9%A1%B5/"/>
       <url>/2021/08/06/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%A6%82%E4%BD%95%E6%B8%B2%E6%9F%93%E7%BD%91%E9%A1%B5/</url>
@@ -337,6 +394,44 @@
       <categories>
           
           <category> 浏览器 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Django配置数据库</title>
+      <link href="/2021/06/28/Diango/Django%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <url>/2021/06/28/Diango/Django%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93/</url>
+      
+        <content type="html"><![CDATA[<h2 id="数据库配置"><a href="#数据库配置" class="headerlink" title="数据库配置"></a>数据库配置</h2><p>打开xxx&#x2F;setting.py文件，找到DATABASES处修改数据库配置，django默认是使用的sqlite，如果你不想使用sqlite，就得配置其他数据库：</p><ul><li><p>django默认数据库：</p><pre class="line-numbers language-none"><code class="language-none"># djangoProject\hello_django\hello_django\settings.py DATABASES &#x3D; &#123;    &#39;default&#39;: &#123;        &#39;ENGINE&#39;: &#39;django.db.backends.sqlite3&#39;,        &#39;NAME&#39;: BASE_DIR &#x2F; &#39;db.sqlite3&#39;,    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li><li><p>其他数据库：</p><pre class="line-numbers language-none"><code class="language-none"># djangoProject\hello_django\hello_django\settings.py DATABASES &#x3D; &#123;    &#39;default&#39;: &#123;        &#39;ENGINE&#39;: &#39;django.db.backends.mysql&#39;,        &#39;NAME&#39;: &#39;mydatabase&#39;,        &#39;USER&#39;: &#39;mydatabaseuser&#39;,        &#39;PASSWORD&#39;: &#39;mypassword&#39;,        &#39;HOST&#39;: &#39;127.0.0.1&#39;,        &#39;PORT&#39;: &#39;3306&#39;,    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul><p>django支持目前市面上常用的数据如 MariaDB、MySQL、Oracle 和 PostgreSQL；sqlite是生成的数据库文件存在你项目的根目录，这样就前期可以先不用搭建数据库环境</p><h3 id="创建一个应用"><a href="#创建一个应用" class="headerlink" title="创建一个应用"></a>创建一个应用</h3><pre class="line-numbers language-none"><code class="language-none">F:\project_gitee\Test\djangoProject\hello_django&gt;python manage.py startapp hello_apps<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><strong>配置工程中包含应用 hello_apps.apps.HelloAppsConfig</strong></p><pre class="line-numbers language-none"><code class="language-none"># djangoProject\hello_django\hello_django\settings.py INSTALLED_APPS &#x3D; [    &#39;django.contrib.admin&#39;,    &#39;django.contrib.auth&#39;,    &#39;django.contrib.contenttypes&#39;,    &#39;django.contrib.sessions&#39;,    &#39;django.contrib.messages&#39;,    &#39;django.contrib.staticfiles&#39;,    &quot;hello_apps.apps.HelloAppsConfig&quot;,        ]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型"></a>创建模型</h3><pre class="line-numbers language-none"><code class="language-none"># djangoProject\hello_django\hello_apps\models.py from django.db import models class TestQuestion(models.Model):    question_title &#x3D; models.CharField(max_length&#x3D;200)    question_description &#x3D; models.CharField(max_length&#x3D;1000)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>每个模型被表示为 django.db.models.Model 类的子类。每个模型有许多类变量，它们都表示模型里的一个数据库字段。也就是对数据库的操作有进行二次封装，也是人们熟称的ORM，用于实现面向对象编程语言里不同类型系统的数据之间的转换。也就是业务层和数据库层之间充当着桥梁的作用。</p><p>运行<strong>makemigrations</strong>命令，django会检测你对模型文件有没进行改动，如有就会进行存储迁移</p><pre class="line-numbers language-none"><code class="language-none">F:\project_gitee\Test\djangoProject\hello_django&gt;python manage.py makemigrations hello_appsMigrations for &#39;hello_apps&#39;:  hello_apps\migrations\0001_initial.py    - Create model TestQuestion<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>运行<strong>sqlmigrate</strong>命令可以看到迁移时会执行哪些sql语句时</p><pre class="line-numbers language-none"><code class="language-none">F:\project_gitee\Test\djangoProject\hello_django&gt;python manage.py sqlmigrate hello_apps 0001 ---- Create model TestQuestion--CREATE TABLE &quot;hello_apps_testquestion&quot; (&quot;id&quot; integer NOT NULL PRIMARY KEY AUTOINCREMENT, &quot;question_title&quot; varchar(200) NOT NULL, &quot;question_description&quot; varchar(1000) NOT NULL, &quot;question_date&quot; date NOT NULL);COMMIT;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>运行<strong>migrate</strong>命令，将模型的更改来同步数据结构上</p><pre class="line-numbers language-none"><code class="language-none">F:\project_gitee\Test\djangoProject\hello_django&gt;python manage.py migrateOperations to perform:  Apply all migrations: admin, auth, contenttypes, hello_apps, sessionsRunning migrations:  Applying contenttypes.0001_initial... OK  Applying auth.0001_initial... OK  Applying admin.0001_initial... OK  Applying admin.0002_logentry_remove_auto_add... OK  Applying admin.0003_logentry_add_action_flag_choices... OK  Applying contenttypes.0002_remove_content_type_name... OK  Applying auth.0002_alter_permission_name_max_length... OK  Applying auth.0003_alter_user_email_max_length... OK  Applying auth.0004_alter_user_username_opts... OK  Applying auth.0005_alter_user_last_login_null... OK  Applying auth.0006_require_contenttypes_0002... OK  Applying auth.0007_alter_validators_add_error_messages... OK  Applying auth.0008_alter_user_username_max_length... OK  Applying auth.0009_alter_user_last_name_max_length... OK  Applying auth.0010_alter_group_name_max_length... OK  Applying auth.0011_update_proxy_permissions... OK  Applying auth.0012_alter_user_first_name_max_length... OK  Applying sessions.0001_initial... OKApplying hello_apps.0001_initial... OK<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> Django </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Vue-生命周期</title>
+      <link href="/2021/05/12/Vue/Vue-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
+      <url>/2021/05/12/Vue/Vue-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
+      
+        <content type="html"><![CDATA[<p><img src="https://s.poetries.work/images/20210408093135.png"></p><p><strong>init</strong></p><p>initLifecycle&#x2F;Event，往vm上挂载各种属性</p><ul><li>callHook: beforeCreated: 实例刚创建</li><li>initInjection&#x2F;initState: 初始化注入和 data 响应性</li><li>created: 创建完成，属性已经绑定， 但还未生成真实dom&#96;</li><li>进行元素的挂载： $el &#x2F; vm.$mount()</li><li>是否有template: 解析成 render function<ul><li>.vue文件: vue-loader会将<template>编译成render function</template></li></ul></li><li>beforeMount: 模板编译&#x2F;挂载之前</li><li>执行render function，生成真实的dom，并替换到dom tree中</li><li>mounted: 组件已挂载</li></ul><p><strong>update</strong></p><ul><li>flushScheduleQueue</li><li>watcher.before: 触发beforeUpdate钩子 - watcher.run(): 执行watcher中的 notify，通知所有依赖项更新UI</li><li>触发updated钩子: 组件已更新</li><li>actived &#x2F; deactivated(keep-alive): 不销毁，缓存，组件激活与失活</li><li>destroy<ul><li>beforeDestroy: 销毁开始</li><li>销毁自身且递归销毁子组件以及事件监听<ul><li>remove(): 删除节点</li><li>watcher.teardown(): 清空依赖</li><li>vm.$off(): 解绑监听</li></ul></li><li>destroyed: 完成后触发钩子</li></ul></li></ul><table><thead><tr><th align="left">vue2</th><th align="left">vue3</th></tr></thead><tbody><tr><td align="left">beforeCreate</td><td align="left">setup(替代)</td></tr><tr><td align="left">created</td><td align="left">setup(替代)</td></tr><tr><td align="left">beforeMount</td><td align="left">onBeforeMount</td></tr><tr><td align="left">mounted</td><td align="left">onMounted</td></tr><tr><td align="left">beforeUpdate</td><td align="left">onBeforeUpdate</td></tr><tr><td align="left">updated</td><td align="left">nUpdated</td></tr><tr><td align="left">beforeDestroy</td><td align="left">onBeforeUnmount</td></tr><tr><td align="left">destroyed</td><td align="left">onUnmounted</td></tr><tr><td align="left">errorCaptured</td><td align="left">onErrorCaptured</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
           
       </categories>
       
@@ -422,11 +517,49 @@
     
     
     <entry>
+      <title>说一说keep-alive实现原理</title>
+      <link href="/2021/02/12/Vue/%E8%AF%B4%E4%B8%80%E8%AF%B4keep-alive%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+      <url>/2021/02/12/Vue/%E8%AF%B4%E4%B8%80%E8%AF%B4keep-alive%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<pre class="line-numbers language-none"><code class="language-none">keep-alive组件接受三个属性参数：include、exclude、max<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ul><li><p>include 指定需要缓存的组件name集合，参数格式支持String, RegExp, Array。当为字符串的时候，多个组件名称以逗号隔开。</p></li><li><p>exclude 指定不需要缓存的组件name集合，参数格式和include一样。</p></li><li><p>max 指定最多可缓存组件的数量,超过数量删除第一个。参数格式支持String、Number。</p></li></ul><p><strong>原理</strong></p><p><strong>keep-alive</strong>实例会缓存对应组件的VNode,如果命中缓存，直接从缓存对象返回对应VNode</p><p>LRU（Least recently used） 算法根据数据的历史访问记录来进行淘汰数据，其核心思想是“如果数据最近被访问过，那么将来被访问的几率也更高”。(墨菲定律：越担心的事情越会发生)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Vue </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>受控组件和非受控组件</title>
       <link href="/2020/12/12/React/%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E5%92%8C%E9%9D%9E%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6/"/>
       <url>/2020/12/12/React/%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E5%92%8C%E9%9D%9E%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6/</url>
       
         <content type="html"><![CDATA[<h2 id="受控组件和非受控组件"><a href="#受控组件和非受控组件" class="headerlink" title="受控组件和非受控组件"></a>受控组件和非受控组件</h2><pre class="line-numbers language-none"><code class="language-none">&lt;FInput value &#x3D; &#123;x&#125; onChange &#x3D; &#123;fn&#125; &#x2F;&gt; &#x2F;&#x2F; 上面的是受控组件 下面的是非受控组件&lt;FInput defaultValue &#x3D; &#123;x&#125; &#x2F;&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><ul><li><p>当你一个组件同时传递一个value以及onChange事件时，它就是一个受控组件，收入输出都是我来控制的。</p></li><li><p>第二个只是传递了默认的初时值，并没有传onchange事件，</p></li><li><p>非受控组件是一种反模式，它的值不受组件自身的state或props控制</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> React </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>为什么React-元素有一个$$typeof属性</title>
+      <link href="/2020/12/01/React/%E4%B8%BA%E4%BB%80%E4%B9%88React-%E5%85%83%E7%B4%A0%E6%9C%89%E4%B8%80%E4%B8%AA-typeof%E5%B1%9E%E6%80%A7/"/>
+      <url>/2020/12/01/React/%E4%B8%BA%E4%BB%80%E4%B9%88React-%E5%85%83%E7%B4%A0%E6%9C%89%E4%B8%80%E4%B8%AA-typeof%E5%B1%9E%E6%80%A7/</url>
+      
+        <content type="html"><![CDATA[<h2 id="为什么-React-元素有一个-typeof-属性"><a href="#为什么-React-元素有一个-typeof-属性" class="headerlink" title="为什么 React 元素有一个 $$typeof 属性"></a>为什么 React 元素有一个 $$typeof 属性</h2><p><img src="https://s.poetries.work/images/image-20210302200213923.png"></p><pre class="line-numbers language-none"><code class="language-none">目的是为了防止 XSS 攻击。因为 Synbol 无法被序列化，所以 React 可以通过有没有 $$typeof 属性来断出当前的 element 对象是从数据库来的还是自己生成的。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><ul><li><p>如果没有 $$typeof 这个属性，react 会拒绝处理该元素。</p></li><li><p>在 React 的古老版本中，下面的写法会出现 XSS 攻击：</p></li></ul><pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 服务端允许用户存储 JSONlet expectedTextButGotJSON &#x3D; &#123;  type: &#39;div&#39;,  props: &#123;    dangerouslySetInnerHTML: &#123;      __html: &#39;&#x2F;* 把你想的搁着 *&#x2F;&#39;    &#125;,  &#125;,  &#x2F;&#x2F; ...&#125;;let message &#x3D; &#123; text: expectedTextButGotJSON &#125;;&#x2F;&#x2F; React 0.13 中有风险&lt;p&gt;  &#123;message.text&#125;&lt;&#x2F;p&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
       
       
       <categories>

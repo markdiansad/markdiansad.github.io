@@ -367,20 +367,11 @@
                 
                 
                 
-                <a href="/categories/React/" title="React: 10">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F9EBEA;">React
-                        <span class="tag-length">10</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Vue/" title="Vue: 5">
+                <a href="/categories/Django/" title="Django: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F5EEF8;">Vue
-                        <span class="tag-length">5</span>
+                            style="background-color: #F9EBEA;">Django
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -388,8 +379,26 @@
                 <a href="/categories/javascript/" title="javascript: 10">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">javascript
+                            style="background-color: #F5EEF8;">javascript
                         <span class="tag-length">10</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/Vue/" title="Vue: 10">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #D5F5E3;">Vue
+                        <span class="tag-length">10</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/React/" title="React: 11">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active "
+                            style="background-color: #E8F8F5;">React
+                        <span class="tag-length">11</span>
                     </span>
                 </a>
                 
@@ -397,7 +406,7 @@
                 <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" title="前端工程化: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #E8F8F5;">前端工程化
+                            style="background-color: #FEF9E7;">前端工程化
                         <span class="tag-length">4</span>
                     </span>
                 </a>
@@ -406,7 +415,7 @@
                 <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="浏览器: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #FEF9E7;">浏览器
+                            style="background-color: #F8F9F9;">浏览器
                         <span class="tag-length">4</span>
                     </span>
                 </a>
@@ -568,6 +577,44 @@ Lane 模型的引入
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2020-12-12
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/React/" class="post-category">
+                                    React
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2020/12/01/React/%E4%B8%BA%E4%BB%80%E4%B9%88React-%E5%85%83%E7%B4%A0%E6%9C%89%E4%B8%80%E4%B8%AA-typeof%E5%B1%9E%E6%80%A7/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://img1.baidu.com/it/u=2294356288,1152510605&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=250" class="responsive-img" alt="为什么React-元素有一个$$typeof属性">
+                            
+                            <span class="card-title">为什么React-元素有一个$$typeof属性</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                为什么 React 元素有一个 $$typeof 属性
+目的是为了防止 XSS 攻击。因为 Synbol 无法被序列化，所以 React 可以通过有没有 $$typeof 属性来断出当前的 element 对象是从数据库来的还是自己生成的。
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-01
                             </span>
                             <span class="publish-author">
                                 
@@ -794,48 +841,33 @@ props + 回调的方式，父组件向子组件传递props进行通讯，此prop
                 </div>
             </div>
             
-            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
-                <div class="card">
-                    <a href="/2020/03/09/React/React%E5%A3%B0%E6%98%8E%E5%91%A8%E6%9C%9F/">
-                        <div class="card-image tag-image">
-                            
-                            <img src="https://img1.baidu.com/it/u=2310170655,486191485&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281" class="responsive-img" alt="React声明周期">
-                            
-                            <span class="card-title">React声明周期</span>
-                        </div>
-                    </a>
-                    <div class="card-content article-content">
-                        <div class="summary block-with-text">
-                            
-                                react 旧版生命周期
-主要可分为 初始化阶段、挂载阶段、更新阶段、卸载阶段。
-初始化阶段发生在 constructor 中的内容，在 constructor 中进行 state、props 的初始化，在这个阶段修改 state，不会执行
-                            
-                        </div>
-                        <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-03-09
-                            </span>
-                            <span class="publish-author">
-                                
-                                <i class="fas fa-bookmark fa-fw icon-category"></i>
-                                
-                                <a href="/categories/React/" class="post-category">
-                                    React
-                                </a>
-                                
-                                
-                            </span>
-                        </div>
-                    </div>
-
-                    
-                </div>
-            </div>
-            
         </div>
     </article>
 </main>
+
+
+<div class="container paging">
+    <div class="row">
+        <div class="col s6 m4 l4">
+            
+            <a class="left btn-floating btn-large disabled">
+                <i class="fas fa-angle-left"></i>
+            </a>
+            
+        </div>
+        <div class="page-info col m4 l4 hide-on-small-only">
+            <div class="center-align b-text-gray">1 / 2</div>
+        </div>
+        <div class="col s6 m4 l4">
+            
+            <a href="/categories/React/page/2/"
+               class="right btn-floating btn-large waves-effect waves-light bg-color">
+                <i class="fas fa-angle-right"></i>
+            </a>
+            
+        </div>
+    </div>
+</div>
 
 
 

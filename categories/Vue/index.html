@@ -367,20 +367,11 @@
                 
                 
                 
-                <a href="/categories/React/" title="React: 10">
+                <a href="/categories/Django/" title="Django: 1">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #F9EBEA;">React
-                        <span class="tag-length">10</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/categories/Vue/" title="Vue: 5">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-active "
-                            style="background-color: #F5EEF8;">Vue
-                        <span class="tag-length">5</span>
+                            style="background-color: #F9EBEA;">Django
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -388,8 +379,26 @@
                 <a href="/categories/javascript/" title="javascript: 10">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #D5F5E3;">javascript
+                            style="background-color: #F5EEF8;">javascript
                         <span class="tag-length">10</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/Vue/" title="Vue: 10">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-active "
+                            style="background-color: #D5F5E3;">Vue
+                        <span class="tag-length">10</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/React/" title="React: 11">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            style="background-color: #E8F8F5;">React
+                        <span class="tag-length">11</span>
                     </span>
                 </a>
                 
@@ -397,7 +406,7 @@
                 <a href="/categories/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" title="前端工程化: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #E8F8F5;">前端工程化
+                            style="background-color: #FEF9E7;">前端工程化
                         <span class="tag-length">4</span>
                     </span>
                 </a>
@@ -406,7 +415,7 @@
                 <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8/" title="浏览器: 4">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            style="background-color: #FEF9E7;">浏览器
+                            style="background-color: #F8F9F9;">浏览器
                         <span class="tag-length">4</span>
                     </span>
                 </a>
@@ -422,6 +431,47 @@
 
     <article id="articles" class="container articles">
         <div class="row tags-posts">
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2022/01/12/Vue/computed-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://img0.baidu.com/it/u=1159606524,30417437&fm=253&fmt=auto&app=138&f=JPEG?w=755&h=500" class="responsive-img" alt="computed-的实现原理">
+                            
+                            <span class="card-title">computed-的实现原理</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                computed 本质是一个惰性求值的观察者computed watcher。其内部通过 this.dirty 属性标记计算属性是否需要重新求值。
+
+
+
+当 computed 的依赖状态发生改变时,就会通知这个惰性的 watcher,com
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-12
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Vue/" class="post-category">
+                                    Vue
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
             
             <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
@@ -444,6 +494,130 @@
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2021-11-12
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Vue/" class="post-category">
+                                    Vue
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/11/12/Vue/Vue-%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://img0.baidu.com/it/u=3868234211,812761090&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500" class="responsive-img" alt="Vue-渲染过程">
+                            
+                            <span class="card-title">Vue-渲染过程</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+
+调用 compile 函数,生成 render 函数字符串 ,编译过程如下
+
+parse 使用大量的正则表达式对template字符串进行解析，将标签、指令、属性等转化为抽象语法树AST。模板 -&gt; AST （最消耗性能）
+
+op
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-12
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Vue/" class="post-category">
+                                    Vue
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/08/12/Vue/Vue3-0-Compositon-api/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://img1.baidu.com/it/u=61220082,898029119&fm=253&fmt=auto&app=138&f=JPEG?w=750&h=500" class="responsive-img" alt="Vue3.0-Compositon_api">
+                            
+                            <span class="card-title">Vue3.0-Compositon_api</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                Compositon apiComposition  API也叫组合式API，是Vue3.x的新特性。
+通过创建 Vue 组件，我们可以将接口的可重复部分及其功能提取到可重用的代码段中。仅此一项就可以使我们的应用程序在可维护性和灵活性方面走
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-12
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Vue/" class="post-category">
+                                    Vue
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/05/12/Vue/Vue-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://img2.baidu.com/it/u=1386503083,2341064514&fm=253&fmt=auto&app=138&f=JPEG?w=331&h=499" class="responsive-img" alt="Vue-生命周期">
+                            
+                            <span class="card-title">Vue-生命周期</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                
+init
+initLifecycle&#x2F;Event，往vm上挂载各种属性
+
+callHook: beforeCreated: 实例刚创建
+initInjection&#x2F;initState: 初始化注入和 data 响应性
+
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-12
                             </span>
                             <span class="publish-author">
                                 
@@ -609,6 +783,49 @@ vue-cli开启打包压缩 和后台配合gzip访问
                         <div class="publish-info">
                             <span class="publish-date">
                                 <i class="far fa-clock fa-fw icon-date"></i>2021-03-17
+                            </span>
+                            <span class="publish-author">
+                                
+                                <i class="fas fa-bookmark fa-fw icon-category"></i>
+                                
+                                <a href="/categories/Vue/" class="post-category">
+                                    Vue
+                                </a>
+                                
+                                
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            
+            <div class="article tag-post col s12 m6 l4" data-aos="zoom-in">
+                <div class="card">
+                    <a href="/2021/02/12/Vue/%E8%AF%B4%E4%B8%80%E8%AF%B4keep-alive%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+                        <div class="card-image tag-image">
+                            
+                            <img src="https://img0.baidu.com/it/u=3599760487,3735094705&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500" class="responsive-img" alt="说一说keep-alive实现原理">
+                            
+                            <span class="card-title">说一说keep-alive实现原理</span>
+                        </div>
+                    </a>
+                    <div class="card-content article-content">
+                        <div class="summary block-with-text">
+                            
+                                keep-alive组件接受三个属性参数：include、exclude、max
+
+
+
+include 指定需要缓存的组件name集合，参数格式支持String, RegExp, Array。当为字符串的时候，多个组件名称以逗号隔开。
+
+e
+                            
+                        </div>
+                        <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-12
                             </span>
                             <span class="publish-author">
                                 
