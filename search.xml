@@ -422,6 +422,25 @@
     
     
     <entry>
+      <title>diango静态文件资源配置</title>
+      <link href="/2021/06/21/Diango/diango%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE/"/>
+      <url>/2021/06/21/Diango/diango%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE/</url>
+      
+        <content type="html"><![CDATA[<p><strong>我们将 HTML 文件默认放在templates文件夹下；将网站所使用的的静态文件放在static文件夹下。</strong></p><p>静态文件：前端已经写好的，能够直接调用的文件</p><p>已经写好的网站 js 文件、CSS 文件、图片文件、第三方的前端框架</p><p><strong>Django 是不会自动创建static文件夹的，需要我们手动创建，这里不需要将文件</strong></p><p>可以直接将第三方框架直接放入 static文件夹下，也可以再建一个other文件夹存放</p><h3 id="静态文件资源接口配置"><a href="#静态文件资源接口配置" class="headerlink" title="静态文件资源接口配置"></a>静态文件资源接口配置</h3><p>通的功能接口，需要在urls.py中先做路由与视图的关联，再在视图层中写功能；</p><p>静态文件资源的配置就不需要那么麻烦！</p><p>在settings.py文件中需要手动书写配置，注意变量名全大写</p><pre class="line-numbers language-none"><code class="language-none"># 拼接 static 文件夹路径，并且放入列表中STATICFILES_DIRS &#x3D; [  os.path.join(BASE_DIR, &#39;static&#39;),  os.path.join(BASE_DIR, &#39;static1&#39;),  os.path.join(BASE_DIR, &#39;static2&#39;),]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h3 id="静态文件接口请求原理"><a href="#静态文件接口请求原理" class="headerlink" title="静态文件接口请求原理"></a>静态文件接口请求原理</h3><p>settins.py中，我们能够发现一个变量STATIC_URL</p><pre class="line-numbers language-none"><code class="language-none">STATIC_URL &#x3D; &#39;&#x2F;static&#x2F;&#39; <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>那么这里的’&#x2F;static&#x2F;‘和我们手写的配置中最终拼接的static文件夹名有何关联呢？</p><p>对于我们拼接出的STATICFILES_DIR中的路径来说，毫无疑问的，就是静态文件所处的路径！</p><p>对于STATIC_URL来说，后面的’&#x2F;static&#x2F;‘相当于一种访问令牌，即 当访问的 URL 路径中包含了’&#x2F;static&#x2F;‘时，Django 会自动地将URL 路径’&#x2F;static&#x2F;‘后的字符 当做资源来查找，查找的路径就是我们手写STATICFILES_DIR列表中的路径，并且顺序是从前到后，查找到会立即返回，不会继续查找</p><p><strong>意味着STATIC_URL 可以随意修改，只要在请求资源的时候，按照修改后的方式，再加上资源名，同样可以请求到</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Django </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vue-生命周期</title>
       <link href="/2021/05/12/Vue/Vue-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/"/>
       <url>/2021/05/12/Vue/Vue-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/</url>
@@ -508,6 +527,44 @@
       <categories>
           
           <category> Vue </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>orm是什么</title>
+      <link href="/2021/03/11/Diango/orm%E6%98%AF%E4%BB%80%E4%B9%88/"/>
+      <url>/2021/03/11/Diango/orm%E6%98%AF%E4%BB%80%E4%B9%88/</url>
+      
+        <content type="html"><![CDATA[<h2 id="ORM-是个啥？"><a href="#ORM-是个啥？" class="headerlink" title="ORM 是个啥？"></a>ORM 是个啥？</h2><p>在python中的一个默认的编写规范是一切皆对象，这样做使得代码简洁，结构清晰，便于维护和重用代码，同时极大的提升开发效率。</p><p>同样在操作数据库时，一般我们用SQL语句来实现操作，但是放在Python中是一串冗长的字符串，不利于调试和修改，更不符合上面提到的规范。</p><p>所以，有大佬就提出ORM来替代原生的SQL语句，说白了<strong>ORM</strong> 就是要给缩写，代表着 <strong>对象-关系-映射</strong></p><table><thead><tr><th align="left">简写</th><th align="left">全称</th><th align="left">中文</th></tr></thead><tbody><tr><td align="left">O</td><td align="left">Object</td><td align="left">对象</td></tr><tr><td align="left">R</td><td align="left">Relational</td><td align="left">关系</td></tr><tr><td align="left">M</td><td align="left">Mapping</td><td align="left">映射</td></tr></tbody></table><hr><table><thead><tr><th align="left">数据库</th><th align="left">ORM</th></tr></thead><tbody><tr><td align="left">数据库的表（table ）</td><td align="left">类（class）</td></tr><tr><td align="left">记录，行数据（record）</td><td align="left">对象（object）</td></tr><tr><td align="left">字段（field）</td><td align="left">对象的属性（attribute）</td></tr></tbody></table><h3 id="ORM相对原始SQL的优劣势"><a href="#ORM相对原始SQL的优劣势" class="headerlink" title="ORM相对原始SQL的优劣势"></a>ORM相对原始SQL的优劣势</h3><p><strong>优势：</strong></p><ul><li><p>专注业务逻辑开发，提升开发效率</p></li><li><p>易于更新维护，重用代码</p></li><li><p>会自动完成比如数据消毒，预处理，事务等功能</p></li><li><p>不用编写复杂的SQL语句</p></li></ul><p><strong>劣势：</strong></p><ul><li><p>牺牲执行效率，增加查询时间</p></li><li><p>无法操作底层数据库，无法实现某些复杂操作</p></li><li><p>遗忘SQL语句编写</p></li></ul><p><strong>怎么选择原生SQL和ORM</strong></p><ul><li><p>对于复杂的SQL语句或数据库层面，推荐使用原始SQL</p></li><li><p>对于要处理复杂的业务逻辑，加快开发，推荐使用ORM</p></li><li><p>ORM 相对 原始SQL在一般的业务中，损耗其实并不高，可以忽略不计</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Django </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Diango的CBV和FBV</title>
+      <link href="/2021/02/21/Diango/Diango%E7%9A%84CBV%E5%92%8CFBV/"/>
+      <url>/2021/02/21/Diango/Diango%E7%9A%84CBV%E5%92%8CFBV/</url>
+      
+        <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul><li><p>FBV（function base views） 顾名思义基于函数的视图类</p></li><li><p>CBV（class base views）基于类的视图类</p></li></ul><p> 我比较喜欢用CBV模式, 因为在Django中内部帮我做了请求方式的判断, 无需用户实现方法判断逻辑, 来看看代码的区别吧</p><h3 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h3><ul><li><strong>FBV</strong><br>fbv就是在url中一个路径对应一个函数. 在工程下的url中写如下代码<pre class="line-numbers language-none"><code class="language-none">from api import views urlpatterns &#x3D; [    path(&#39;admin&#x2F;&#39;, admin.site.urls),    path(&#39;&#39;, include(&#39;api.urls&#39;)),    url(r&#39;^test&#x2F;&#39;, views.test_fbv)]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li></ul><p>然后在api的views中写如下测试函数:</p><pre class="line-numbers language-none"><code class="language-none">def test_fbv(request):     if(request.method &#x3D;&#x3D; &#39;POST&#39;):        return HttpResponse(&quot;post&quot;)     if (request.method &#x3D;&#x3D; &#39;PUT&#39;):        return HttpResponse(&quot;put&quot;)     if (request.method &#x3D;&#x3D; &#39;GET&#39;):        return HttpResponse(&quot;get&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong>然后运行整个整个工程, 命令行输入python manage.py runserver</strong></p><ul><li><strong>CBV</strong><br>CBV就是在url中一个路径对应一个类</li></ul><p>在上述工程下的urls下添加如下代码</p><pre class="line-numbers language-none"><code class="language-none"> urlpatterns &#x3D; [    path(&#39;admin&#x2F;&#39;, admin.site.urls),    path(&#39;&#39;, include(&#39;api.urls&#39;)),    url(r&#39;^test_FBV&#x2F;&#39;, views.test_FBV),    url(r&#39;^test_CBV&#x2F;&#39;, views.test_CBV.as_view())]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>注意当用<strong>cbv模式写url时类后面一定要用as_view()方法, 这是规定格式</strong></p><p>然后在api下的views文件中写如以下逻辑代码</p><pre class="line-numbers language-none"><code class="language-none">from django.views import View class test_CBV(View):    # 以get形式访问会执行get函数,一般情况下获取数据    def get(self, *args, **kwargs):        return HttpResponse(&#39;get&#39;)     # 以post形式访问的话会执行post函数，一般情况下发送数据    def post(self, *args, **kwargs):        return HttpResponse(&#39;post&#39;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>1.cbv模式下的视图类一定要继承Views类</p><ol start="2"><li>然后重定向get, post, put请求方法等, 实现不同的请求方法实现不同的逻辑代码, api验证这部分我就不说了, 直接用restclient测试就可以了</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Django </category>
           
       </categories>
       

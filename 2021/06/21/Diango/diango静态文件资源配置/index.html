@@ -4,14 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="说一说keep-alive实现原理, 阿龙">
-    <meta name="description" content="keep-alive组件接受三个属性参数：include、exclude、max
-
-
-
-include 指定需要缓存的组件name集合，参数格式支持String, RegExp, Array。当为字符串的时候，多个组件名称以逗号隔开。
-
-e">
+    <meta name="keywords" content="diango静态文件资源配置, 阿龙">
+    <meta name="description" content="我们将 HTML 文件默认放在templates文件夹下；将网站所使用的的静态文件放在static文件夹下。
+静态文件：前端已经写好的，能够直接调用的文件
+已经写好的网站 js 文件、CSS 文件、图片文件、第三方的前端框架
+Django ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -25,7 +22,7 @@ e">
 
     
 
-    <title>说一说keep-alive实现原理 | 阿龙</title>
+    <title>diango静态文件资源配置 | 阿龙</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
@@ -315,12 +312,12 @@ e">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://img0.baidu.com/it/u=3599760487,3735094705&fm=253&fmt=auto&app=138&f=JPEG?w=749&h=500')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://img0.baidu.com/it/u=343176553,137372147&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">说一说keep-alive实现原理</h1>
+                    <h1 class="description center-align post-title">diango静态文件资源配置</h1>
                 </div>
             </div>
         </div>
@@ -444,8 +441,8 @@ e">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Vue/" class="post-category">
-                                Vue
+                            <a href="/categories/Django/" class="post-category">
+                                Django
                             </a>
                         
                     </div>
@@ -457,7 +454,7 @@ e">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-12
+                    2021-06-21
                 </div>
                 
 
@@ -481,20 +478,28 @@ e">
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre class="line-numbers language-none"><code class="language-none">keep-alive组件接受三个属性参数：include、exclude、max<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+                <p><strong>我们将 HTML 文件默认放在templates文件夹下；将网站所使用的的静态文件放在static文件夹下。</strong></p>
+<p>静态文件：前端已经写好的，能够直接调用的文件</p>
+<p>已经写好的网站 js 文件、CSS 文件、图片文件、第三方的前端框架</p>
+<p><strong>Django 是不会自动创建static文件夹的，需要我们手动创建，这里不需要将文件</strong></p>
+<p>可以直接将第三方框架直接放入 static文件夹下，也可以再建一个other文件夹存放</p>
+<h3 id="静态文件资源接口配置"><a href="#静态文件资源接口配置" class="headerlink" title="静态文件资源接口配置"></a>静态文件资源接口配置</h3><p>通的功能接口，需要在urls.py中先做路由与视图的关联，再在视图层中写功能；</p>
+<p>静态文件资源的配置就不需要那么麻烦！</p>
+<p>在settings.py文件中需要手动书写配置，注意变量名全大写</p>
+<pre class="line-numbers language-none"><code class="language-none"># 拼接 static 文件夹路径，并且放入列表中
+STATICFILES_DIRS &#x3D; [
+  os.path.join(BASE_DIR, &#39;static&#39;),
+  os.path.join(BASE_DIR, &#39;static1&#39;),
+  os.path.join(BASE_DIR, &#39;static2&#39;),
+]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h3 id="静态文件接口请求原理"><a href="#静态文件接口请求原理" class="headerlink" title="静态文件接口请求原理"></a>静态文件接口请求原理</h3><p>settins.py中，我们能够发现一个变量STATIC_URL</p>
+<pre class="line-numbers language-none"><code class="language-none">STATIC_URL &#x3D; &#39;&#x2F;static&#x2F;&#39; <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<ul>
-<li><p>include 指定需要缓存的组件name集合，参数格式支持String, RegExp, Array。当为字符串的时候，多个组件名称以逗号隔开。</p>
-</li>
-<li><p>exclude 指定不需要缓存的组件name集合，参数格式和include一样。</p>
-</li>
-<li><p>max 指定最多可缓存组件的数量,超过数量删除第一个。参数格式支持String、Number。</p>
-</li>
-</ul>
-<p><strong>原理</strong></p>
-<p><strong>keep-alive</strong>实例会缓存对应组件的VNode,如果命中缓存，直接从缓存对象返回对应VNode</p>
-<p>LRU（Least recently used） 算法根据数据的历史访问记录来进行淘汰数据，其核心思想是“如果数据最近被访问过，那么将来被访问的几率也更高”。(墨菲定律：越担心的事情越会发生)</p>
+<p>那么这里的’&#x2F;static&#x2F;‘和我们手写的配置中最终拼接的static文件夹名有何关联呢？</p>
+<p>对于我们拼接出的STATICFILES_DIR中的路径来说，毫无疑问的，就是静态文件所处的路径！</p>
+<p>对于STATIC_URL来说，后面的’&#x2F;static&#x2F;‘相当于一种访问令牌，即 当访问的 URL 路径中包含了’&#x2F;static&#x2F;‘时，Django 会自动地将URL 路径’&#x2F;static&#x2F;‘后的字符 当做资源来查找，查找的路径就是我们手写STATICFILES_DIR列表中的路径，并且顺序是从前到后，查找到会立即返回，不会继续查找</p>
+<p><strong>意味着STATIC_URL 可以随意修改，只要在请求资源的时候，按照修改后的方式，再加上资源名，同样可以请求到</strong></p>
 
                 
             </div>
@@ -521,7 +526,7 @@ e">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/02/12/Vue/%E8%AF%B4%E4%B8%80%E8%AF%B4keep-alive%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">http://example.com/2021/02/12/Vue/%E8%AF%B4%E4%B8%80%E8%AF%B4keep-alive%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</a>
+                    <a href="http://example.com/2021/06/21/Diango/diango%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE/">http://example.com/2021/06/21/Diango/diango%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E9%85%8D%E7%BD%AE/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -734,12 +739,12 @@ e">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/02/21/Diango/Diango%E7%9A%84CBV%E5%92%8CFBV/">
+                <a href="/2021/06/28/Diango/Django%E9%85%8D%E7%BD%AE%E6%95%B0%E6%8D%AE%E5%BA%93/">
                     <div class="card-image">
                         
-                        <img src="https://img0.baidu.com/it/u=4091189772,3258100310&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=281" class="responsive-img" alt="Diango的CBV和FBV">
+                        <img src="https://img1.baidu.com/it/u=3596676013,791402308&fm=253&fmt=auto&app=138&f=JPEG?w=591&h=500" class="responsive-img" alt="Django配置数据库">
                         
-                        <span class="card-title">Diango的CBV和FBV</span>
+                        <span class="card-title">Django配置数据库</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -750,7 +755,7 @@ e">
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-21
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-28
                         </span>
                         <span class="publish-author">
                             
@@ -774,12 +779,12 @@ e">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/12/React/%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6%E5%92%8C%E9%9D%9E%E5%8F%97%E6%8E%A7%E7%BB%84%E4%BB%B6/">
+                <a href="/2021/05/12/Vue/Vue-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
                     <div class="card-image">
                         
-                        <img src="https://img2.baidu.com/it/u=8935421,3761687976&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=247" class="responsive-img" alt="受控组件和非受控组件">
+                        <img src="https://img2.baidu.com/it/u=1386503083,2341064514&fm=253&fmt=auto&app=138&f=JPEG?w=331&h=499" class="responsive-img" alt="Vue-生命周期">
                         
-                        <span class="card-title">受控组件和非受控组件</span>
+                        <span class="card-title">Vue-生命周期</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -790,14 +795,14 @@ e">
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-12
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/React/" class="post-category">
-                                    React
+                            <a href="/categories/Vue/" class="post-category">
+                                    Vue
                                 </a>
                             
                             
